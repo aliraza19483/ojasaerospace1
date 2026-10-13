@@ -1024,14 +1024,14 @@ export default function Solutions() {
       <section className="hp-about hp-section" id="company">
         <div className="about-visual">
           <img
-            src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.42.50%20AM%20(1).jpeg"
-            alt="OJAS Aerospace Dehradun Central Engineering Labs propulsion test cage"
+            src="/all%20image/drone-assembly-training-lab.jpg"
+            alt="OJAS Aerospace Dehradun Engineering Lab — Technical crew and engineers assembling operational agricultural airframe platform"
             loading="lazy"
             decoding="async"
           />
           <span>ENGINEERING / INTELLIGENCE / INFRASTRUCTURE</span>
           <span className="photo-credit about-photo-credit">
-            OJAS Central Aerospace Lab · Dehradun
+            OJAS Central Aerospace Lab · Airframe Assembly & Field Prep
           </span>
         </div>
         <div className="about-copy">
