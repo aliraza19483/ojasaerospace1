@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OJAS Aerospace — V10
 
 V10 refactors the V9 visual baseline around the finalized OJAS information architecture.
@@ -43,3 +44,6 @@ Animations (hero video, satellite drift, rocket launch, orbit) now run by defaul
 even if the OS has "reduce motion" / "show animations" turned off.
 - `?motion=reduced` forces reduced mode (remembered in localStorage); `?motion=full` forces full; `?motion=auto` clears the override.
 - To follow the OS "reduce motion" setting again, set `RESPECT_OS_REDUCED_MOTION = true` in `src/motion.ts`.
+=======
+# ojasaerospace1
+>>>>>>> 7bded73b2d948606557bf11f38724a21d94cd7cc

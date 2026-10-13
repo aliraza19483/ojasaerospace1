@@ -6535,16 +6535,42 @@ html[data-motion="reduced"] *:after {
 
   .mobileNavOverlay .mobileNavActions {
     display: flex;
-    padding-top: 20px;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 16px;
     justify-content: flex-start
   }
 
   .mobileNavOverlay .mobileNavActions .partner {
     display: inline-block;
-    width: auto;
+    width: 100%;
     text-align: center;
     padding: 13px 18px;
     border-bottom: 1px solid rgba(232, 184, 79, .7)
+  }
+
+  .mobileWhatsAppBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 8px;
+    background: rgba(37, 211, 102, 0.12);
+    border: 1px solid rgba(37, 211, 102, 0.4);
+    color: #25D366;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mobileWhatsAppBtn:hover {
+    background: rgba(37, 211, 102, 0.22);
+    border-color: #25D366;
   }
 }
 
@@ -9170,6 +9196,44 @@ html[data-motion="reduced"] .splashLine {
   color: var(--muted);
 }
 
+/* Category Comparison Matrix */
+.categoryComparisonTableWrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  margin: 24px 0 32px;
+}
+.categoryComparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+.categoryComparisonTable th {
+  background: rgba(242, 196, 90, 0.08);
+  color: var(--gold2);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+.categoryComparisonTable td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #d1cdd9;
+  white-space: nowrap;
+}
+.categoryComparisonTable tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+.categoryComparisonTable td strong {
+  color: #fff;
+}
+
 /* 4 Core Services Grid */
 .fourServicesGrid {
   display: grid;
@@ -10081,6 +10145,72 @@ html[data-motion="reduced"] .splashLine {
   color: var(--muted);
   line-height: 1.5;
   margin: 0;
+}
+
+/* Sample Advisory Output Card */
+.miluSampleAlertCard {
+  background: rgba(10, 8, 22, 0.7);
+  border: 1px solid rgba(232, 184, 79, 0.3);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+  backdrop-filter: blur(8px);
+}
+.sampleAlertHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+.sampleAlertBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--gold2);
+  font-weight: 700;
+}
+.sampleAlertLoc {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.sampleAlertContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 850px) {
+  .sampleAlertContent {
+    grid-template-columns: 1fr;
+  }
+}
+.sampleAlertMetric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sampleAlertMetric small {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+}
+.sampleAlertMetric b {
+  font-size: 15px;
+  color: #fff;
+}
+.sampleAlertMetric span {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 .dataTrustGrid {

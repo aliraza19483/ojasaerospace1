@@ -168,6 +168,60 @@ export function CategoriesPage() {
         </div>
       </SectionBlock>
 
+      {/* 4-Pillar Operational Comparison Matrix */}
+      <SectionBlock
+        eyebrow="Side-by-Side Operational Comparison"
+        title={
+          <>
+            Matching airframe class to <em>field requirements.</em>
+          </>
+        }
+      >
+        <div className="categoryComparisonTableWrap">
+          <table className="categoryComparisonTable">
+            <thead>
+              <tr>
+                <th>Category Pillar</th>
+                <th>Typical Payload</th>
+                <th>Flight Endurance</th>
+                <th>Operational Range</th>
+                <th>Primary Use Case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>🌾 Agricultural Spraying</strong></td>
+                <td>10 – 50 Litres / kg</td>
+                <td>18 – 25 Mins (Full Load)</td>
+                <td>3 – 5 km Telemetry</td>
+                <td>Paddy, sugarcane, cotton crop protection</td>
+              </tr>
+              <tr>
+                <td><strong>📦 Heavy VTOL & Cargo</strong></td>
+                <td>5 – 15 kg Cargo Pod</td>
+                <td>2 – 3.5 Hours</td>
+                <td>50 – 100+ km BVLOS</td>
+                <td>Medical logistics, emergency parcel transit</td>
+              </tr>
+              <tr>
+                <td><strong>🎥 Cinematic & FPV</strong></td>
+                <td>Action Cam / 4K Rig</td>
+                <td>8 – 22 Mins</td>
+                <td>2 – 10 km HD Link</td>
+                <td>Close-proximity flythrough, mountain cinematography</td>
+              </tr>
+              <tr>
+                <td><strong>🏭 Industrial Inspection</strong></td>
+                <td>1.5 – 8 kg Sensor Pod</td>
+                <td>75 Mins – 4 Hours</td>
+                <td>20 – 100+ km</td>
+                <td>Powerlines, solar farms, cadastral GIS mapping</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </SectionBlock>
+
       {/* Interactive Fleet Specs & Real Ground Proof Showcase */}
       <InteractiveFleetShowcase />
     </StandardPage>

@@ -58,6 +58,7 @@ export function Navbar() {
 
   const links: [string, string, string?][] = [
     ["HOME", "/"],
+    ["CATEGORIES", "/categories"],
     ["SECTORS", "/sectors"],
     ["SERVICES", "/services"],
     ["TECHNOLOGY", "/technology", "technology"],
@@ -117,6 +118,12 @@ export function Navbar() {
           >
             HOME
           </button>
+          <button
+            className={path === "/categories" ? "active" : ""}
+            onClick={() => handle("/categories")}
+          >
+            CATEGORIES
+          </button>
           <div className="navDropdownContainer">
             <button
               className={path === "/sectors" || sectorsOpen ? "active" : ""}
@@ -126,7 +133,7 @@ export function Navbar() {
               SECTORS <span className="menuCaret">⌄</span>
             </button>
           </div>
-          {links.slice(2).map(([label, url, section]) => (
+          {links.slice(3).map(([label, url, section]) => (
             <button
               key={url}
               className={!home && path === url ? "active" : ""}
@@ -211,6 +218,15 @@ export function Navbar() {
           <button className="partner" onClick={() => handle("/contact")}>
             START A CONVERSATION <span>→</span>
           </button>
+          <a
+            href="https://wa.me/911354316767?text=Hello%20OJAS%20Aerospace%2C%20I%20would%20like%20to%20inquire%20about%20drone%20platforms%20and%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mobileWhatsAppBtn"
+            onClick={() => setMobileOpen(false)}
+          >
+            <span>💬</span> CHAT ON WHATSAPP ↗
+          </a>
         </div>
       </div>
       <SectorsMenu

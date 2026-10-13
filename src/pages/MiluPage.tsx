@@ -162,6 +162,34 @@ export function MiluPage() {
             </div>
           ))}
         </div>
+
+        {/* Sample Real-World Decision Support Output */}
+        <div className="miluSampleAlertCard">
+          <div className="sampleAlertHead">
+            <div className="sampleAlertBadge">
+              <span className="liveDot" />
+              <span>MILU AI TELEMETRY DISPATCH · SAMPLE FARMER ADVISORY</span>
+            </div>
+            <span className="sampleAlertLoc">HARDOI SUGARCANE COMMAND BELT // PLOT #14</span>
+          </div>
+          <div className="sampleAlertContent">
+            <div className="sampleAlertMetric">
+              <small>CANOPY HEALTH INDEX (NDVI)</small>
+              <b>0.74 <span style={{ color: "#10b981", fontSize: 13 }}>● Optimal Density</span></b>
+              <span>Multispectral drone sensor pass at 45m AGL</span>
+            </div>
+            <div className="sampleAlertMetric">
+              <small>TARGETED ANOMALY DIAGNOSIS</small>
+              <b>Early Stage Red Rot Risk: <span style={{ color: "var(--gold2)", fontSize: 13 }}>3.2% East Sector</span></b>
+              <span>Early detection prevents cross-plot contagion</span>
+            </div>
+            <div className="sampleAlertMetric">
+              <small>AUTOMATED DISPATCH ACTION</small>
+              <b>Prescription Spray Waypoint Transmitted</b>
+              <span>Assigned to block Drone Centre pilot for morning sortie</span>
+            </div>
+          </div>
+        </div>
       </SectionBlock>
 
       {/* Data Protection, Governance & Enterprise Security */}
