@@ -82,7 +82,10 @@ export function TeamPage() {
           {shown.map((member, i) => (
             <article key={member.name} className="teamCard">
               <div className="teamPortrait">
-                <img src={member.image} alt={member.name} />
+                <img src={member.image} alt={member.name} loading="lazy" decoding="async" />
+                {member.credential && (
+                  <span className="teamMemberBadge">{member.credential}</span>
+                )}
               </div>
 
               <small>{String(i + 1).padStart(2, "0")}</small>

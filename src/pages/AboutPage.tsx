@@ -7,6 +7,8 @@ import { StandardPage } from "../components/ui/StandardPage";
 import { SectionBlock } from "../components/ui/SectionBlock";
 import { Icon } from "../components/ui/Icon";
 
+import { MilestoneTimeline } from "../components/sections/MilestoneTimeline";
+
 export function AboutPage() {
   return (
     <StandardPage
@@ -61,6 +63,21 @@ export function AboutPage() {
         </div>
       </SectionBlock>
 
+      {/* Chronological Milestone Roadmap */}
+      <SectionBlock
+        eyebrow="Chronological Progression"
+        title={
+          <>
+            From aeromechanics R&D to <em>nationwide operations.</em>
+          </>
+        }
+      >
+        <p className="wideLead">
+          Trace OJAS Aerospace's systematic engineering journey from early CFD simulations in Dehradun through the commissioning of our propulsion dynamometer rig to multi-state field execution.
+        </p>
+        <MilestoneTimeline />
+      </SectionBlock>
+
       {/* 7 Core Values */}
       <SectionBlock
         eyebrow="Core Values"
@@ -83,6 +100,39 @@ export function AboutPage() {
               <p>{val.description}</p>
             </article>
           ))}
+        </div>
+      </SectionBlock>
+
+      {/* Founder's Perspective & Aviation Discipline */}
+      <SectionBlock
+        eyebrow="From the Flight Deck"
+        title={
+          <>
+            Airmanship & <em>aerospace safety culture.</em>
+          </>
+        }
+      >
+        <div className="founderQuoteCard">
+          <div className="founderCardHeader">
+            <span className="aviationWingsBadge">✈ CIVIL AVIATION RIGOR · ATMANIRBHAR AEROSPACE</span>
+          </div>
+          <blockquote>
+            “Unmanned aviation cannot be treated as toy engineering. Every airframe we prototype, every motor we stress-test on our Dehradun dynamometer, and every flight corridor we designate carries the same strict airmanship, flight checklists, and safety tolerances that govern commercial aircraft flight decks. We engineer for Indian terrain with zero compromise on safety.”
+          </blockquote>
+          <div className="founderSignoff">
+            <div className="founderAvatar">
+              <img
+                src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.46.14%20AM.jpeg"
+                alt="Flight Operations Leadership in Cockpit"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div>
+              <strong>Flight Operations & Aerospace Leadership</strong>
+              <span>OJAS Aerospace Private Limited · Dehradun Central Command</span>
+            </div>
+          </div>
         </div>
       </SectionBlock>
 

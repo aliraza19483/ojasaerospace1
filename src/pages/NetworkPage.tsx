@@ -9,6 +9,7 @@ import {
 import { StandardPage } from "../components/ui/StandardPage";
 import { SectionBlock } from "../components/ui/SectionBlock";
 import { Icon } from "../components/ui/Icon";
+import { NetworkMapVisual } from "../components/sections/NetworkMapVisual";
 import { triggerInquiry } from "../components/ui/InquiryModal";
 
 export function NetworkPage() {
@@ -26,6 +27,21 @@ export function NetworkPage() {
       description="OJAS Aerospace's network model connects Dehradun Headquarters with district-level Drone Ports and block-level Drone Centres—bringing drone technology, repair, training, and digital intelligence directly to operating areas."
       image={ecosystemImage}
     >
+      {/* Interactive Regional Topology Console */}
+      <SectionBlock
+        eyebrow="Interactive Regional Network Console"
+        title={
+          <>
+            Operational corridor & <em>facility telemetry.</em>
+          </>
+        }
+      >
+        <p className="wideLead">
+          Explore verified command hubs, district Drone Ports, and block Drone Centres across the Uttarakhand and Uttar Pradesh operations corridor. Click any node to review response radiuses, telemetry, and activated local capabilities.
+        </p>
+        <NetworkMapVisual />
+      </SectionBlock>
+
       {/* Network Structure Hierarchy */}
       <SectionBlock
         eyebrow="The Two-Level Network Hierarchy"

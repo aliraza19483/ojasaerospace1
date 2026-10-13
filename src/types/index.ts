@@ -64,6 +64,7 @@ export type TeamMember = {
   department: string;
   image: string;
   category: string;
+  credential?: string;
 };
 
 export type CareerItem = {

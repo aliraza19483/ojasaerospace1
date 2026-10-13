@@ -63,6 +63,36 @@ export function ContactBlock() {
             <span>Dehradun, Haridwar (Uttarakhand) · Hardoi (Uttar Pradesh)</span>
           </div>
         </div>
+
+        {/* Stylized Headquarters Terminal Card */}
+        <div className="hqTerminalCard">
+          <div className="hqTerminalHeader">
+            <span className="hqCoordBadge">GPS: 30°18'59.4"N · 78°01'55.9"E</span>
+            <span className="hqAltBadge">640m AMSL</span>
+          </div>
+          <div className="hqTerminalBody">
+            <h4>Dehradun Central Headquarters & R&D Bay</h4>
+            <p>
+              Imperial Heights, Near DIT University, Mussoorie Diversion Road, Dehradun, Uttarakhand - 248009
+            </p>
+            <div className="hqTransitInfo">
+              <span>✈ 32 km from Jolly Grant Airport (DED)</span>
+              <span>🚆 12 km from Dehradun Railway Station</span>
+            </div>
+            <div className="hqHoursInfo">
+              <small>ENGINEERING & VISITOR HOURS</small>
+              <span>Mon – Sat: 09:30 – 18:30 IST · Prior clearance required for propulsion bay</span>
+            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Imperial+Heights+Near+DIT+University+Dehradun+Uttarakhand+248009"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hqMapsBtn"
+            >
+              <span>📍</span> NAVIGATE VIA GOOGLE MAPS ↗
+            </a>
+          </div>
+        </div>
       </div>
 
       <div className="contactFormWrapper">

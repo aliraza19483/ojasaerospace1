@@ -22,6 +22,7 @@ export const teamSeed: TeamMember[] = [
     department: "Administration",
     image: harshitDixit,
     category: "LEADERSHIP",
+    credential: "Civil Aviation & Operations Lead",
   },
   {
     name: "Paramjeet Bind",
@@ -29,6 +30,7 @@ export const teamSeed: TeamMember[] = [
     department: "Hardware & R&D",
     image: paramjeetBind,
     category: "AEROSPACE & R&D",
+    credential: "Missile Aerodynamics & Dynamics",
   },
   {
     name: "Abhishek Dixit",
@@ -36,6 +38,7 @@ export const teamSeed: TeamMember[] = [
     department: "Agriculture R&D",
     image: abhishekDixit,
     category: "AEROSPACE & R&D",
+    credential: "Precision Agro-Ecological R&D",
   },
   {
     name: "Satyam Jha",
@@ -43,6 +46,7 @@ export const teamSeed: TeamMember[] = [
     department: "IT",
     image: satyamJha,
     category: "TECHNOLOGY & AI",
+    credential: "Edge AI & Geospatial Computing",
   },
   {
     name: "Ishan Shrivastava",
@@ -50,6 +54,7 @@ export const teamSeed: TeamMember[] = [
     department: "IT",
     image: ishanShrivastava,
     category: "TECHNOLOGY & AI",
+    credential: "Telemetry & Cloud Infrastructure",
   },
   {
     name: "Ritesh Kumar",
@@ -57,6 +62,7 @@ export const teamSeed: TeamMember[] = [
     department: "IT",
     image: riteshKumar,
     category: "TECHNOLOGY & AI",
+    credential: "Digital Sky & API Integration",
   },
   {
     name: "Ali Raza",
@@ -64,6 +70,7 @@ export const teamSeed: TeamMember[] = [
     department: "IT",
     image: aliRaza,
     category: "TECHNOLOGY & AI",
+    credential: "Frontend Systems & UI Architect",
   },
   {
     name: "Awadhesh Pathak",
@@ -71,6 +78,7 @@ export const teamSeed: TeamMember[] = [
     department: "IT",
     image: awadheshPathak,
     category: "TECHNOLOGY & AI",
+    credential: "Autonomous Mission Control",
   },
   {
     name: "Sumit Shukla",
@@ -78,6 +86,7 @@ export const teamSeed: TeamMember[] = [
     department: "IT",
     image: sumitShukla,
     category: "TECHNOLOGY & AI",
+    credential: "Edge Neural Models & Microservices",
   },
   {
     name: "Shweta Sharma",
@@ -85,6 +94,7 @@ export const teamSeed: TeamMember[] = [
     department: "HR & Marketing",
     image: shwetaSharma,
     category: "OPERATIONS",
+    credential: "Operations & Talent Strategy",
   },
   {
     name: "Aditya Srivastava",
@@ -92,6 +102,7 @@ export const teamSeed: TeamMember[] = [
     department: "Finance",
     image: adityaSrivastava,
     category: "BUSINESS",
+    credential: "Agricultural Economics & Models",
   },
   {
     name: "Prakhar Gupta",
@@ -99,6 +110,7 @@ export const teamSeed: TeamMember[] = [
     department: "IT",
     image: prakharGupta,
     category: "DESIGN",
+    credential: "Design Systems & Prototyping",
   },
   {
     name: "Mayank Agarwal",
@@ -106,6 +118,7 @@ export const teamSeed: TeamMember[] = [
     department: "IT",
     image: mayankAgarwal,
     category: "DESIGN",
+    credential: "Spatial Interfaces & Visuals",
   },
   {
     name: "Shubham Chaudhary",
@@ -113,6 +126,7 @@ export const teamSeed: TeamMember[] = [
     department: "IT",
     image: shubhamChaudhary,
     category: "TECHNOLOGY & AI",
+    credential: "Field Firmware & Hardware QA",
   },
   {
     name: "Aviral Singh",
@@ -120,5 +134,6 @@ export const teamSeed: TeamMember[] = [
     department: "Digital Marketing",
     image: aviralSingh,
     category: "MARKETING",
+    credential: "Field Outreach & Communications",
   },
 ];

@@ -11521,5 +11521,1223 @@ html[data-motion="reduced"] .splashLine {
   }
 }
 
+/* ============================================================
+   PHASE 3: INTERACTIVE NETWORK TOPOLOGY CONSOLE
+============================================================ */
+.networkConsoleWrapper {
+  background: rgba(10, 8, 22, 0.85);
+  border: 1px solid rgba(232, 184, 79, 0.22);
+  border-radius: 18px;
+  overflow: hidden;
+  margin: 28px 0 36px;
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.networkConsoleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 18px 24px;
+  background: rgba(5, 5, 12, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.consoleHeaderTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.consolePulseDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 12px #10b981;
+  animation: radarDotPulse 1.8s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+@keyframes radarDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.consoleHeaderTitle h4 {
+  font-size: 13px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.12em;
+  color: #fff;
+  margin: 0;
+}
+
+.consoleHeaderTitle small {
+  display: block;
+  font-size: 10px;
+  color: var(--gold2);
+  letter-spacing: 0.08em;
+  font-family: 'Space Mono', monospace;
+  margin-top: 2px;
+}
+
+.consoleStatusChips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.statusChip {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.chipLive {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.chipPilot {
+  background: rgba(234, 179, 8, 0.12);
+  color: #eab308;
+  border-color: rgba(234, 179, 8, 0.35);
+}
+
+.chipExpansion {
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.networkConsoleBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 0;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .networkConsoleBody {
+    grid-template-columns: 1fr;
+  }
+}
+
+.networkSvgContainer {
+  min-width: 0;
+  width: 100%;
+  padding: 20px;
+  background: #040409;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 1024px) {
+  .networkSvgContainer {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+.networkSvgMap {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+@keyframes corridorDash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.animatedCorridor {
+  animation: corridorDash 2.2s linear infinite;
+}
+
+.animatedCorridorSlow {
+  animation: corridorDash 4s linear infinite;
+}
+
+.nodePulseRing {
+  animation: ringExpand 2s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: center;
+}
+
+@keyframes ringExpand {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.networkPillSelector {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 14px 4px 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nodePillBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  padding: 6px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nodePillBtn:hover, .nodePillBtn.active {
+  background: rgba(232, 184, 79, 0.12);
+  border-color: rgba(232, 184, 79, 0.4);
+  color: #fff;
+}
+
+.nodePillDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.networkTelemetryCard {
+  min-width: 0;
+  width: 100%;
+  padding: 28px;
+  background: rgba(8, 7, 18, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.telemetryTopRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.telemetryTier {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.14em;
+  color: var(--gold2);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.telemetryTopRow h3 {
+  font-size: 20px;
+  color: #fff;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.telemetryStatusBadge {
+  font-size: 9.5px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.telemetryDesc {
+  font-size: 13px;
+  color: #c9c4cf;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+.telemetryMetaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 18px;
+}
+
+.telemetryMetaItem small {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 2px;
+}
+
+.telemetryMetaItem span {
+  font-size: 12px;
+  color: #f0edf5;
+  font-weight: 500;
+  font-family: 'Outfit', sans-serif;
+}
+
+.telemetryCapabilities {
+  margin-bottom: 18px;
+}
+
+.telemetryCapabilities small {
+  display: block;
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 8px;
+}
+
+.telemetryCapabilities ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.telemetryCapabilities li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: #e2dfec;
+  line-height: 1.4;
+}
+
+.capCheck {
+  color: var(--gold1);
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.telemetryLocationFooter {
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.telemetryContactRow small {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 3px;
+}
+
+.telemetryContactRow span {
+  display: block;
+  font-size: 12px;
+  color: #b3adbd;
+  margin-bottom: 4px;
+}
+
+.telemetryContactRow strong {
+  display: block;
+  font-size: 12px;
+  color: var(--gold1);
+  font-family: 'Space Mono', monospace;
+}
+
+.networkMetricsStrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: rgba(4, 4, 10, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 640px) {
+  .networkMetricsStrip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.metricItem {
+  padding: 16px 20px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.metricItem:last-child {
+  border-right: none;
+}
+
+.metricVal {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold1);
+  font-family: 'Space Mono', monospace;
+}
+
+.metricLbl {
+  display: block;
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-family: 'Space Mono', monospace;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   PHASE 3: CHRONOLOGICAL MILESTONE TIMELINE
+============================================================ */
+.milestoneTimelineContainer {
+  margin: 28px 0 36px;
+  background: rgba(10, 8, 22, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.timelineYearNav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 24px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.timelineYearBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.timelineYearBtn .yearNumber {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.timelineYearBtn .yearDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all 0.2s;
+}
+
+.timelineYearBtn:hover, .timelineYearBtn.active {
+  background: rgba(232, 184, 79, 0.14);
+  border-color: rgba(232, 184, 79, 0.45);
+}
+
+.timelineYearBtn.active .yearNumber {
+  color: #fff;
+}
+
+.timelineYearBtn.active .yearDot {
+  background: var(--gold1);
+  box-shadow: 0 0 8px var(--gold1);
+}
+
+.timelineCardsTrack {
+  position: relative;
+}
+
+.timelineCardItem {
+  display: none;
+  animation: timelineFadeIn 0.35s ease forwards;
+}
+
+.timelineCardItem.selected {
+  display: block;
+}
+
+@keyframes timelineFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.timelineCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.timelineYearPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232, 184, 79, 0.1);
+  border: 1px solid rgba(232, 184, 79, 0.3);
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+
+.timelineYearPill span {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--gold1);
+}
+
+.timelineYearPill small {
+  font-family: 'Space Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: #e2dfec;
+}
+
+.timelineLocBadge {
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: #c9c4cf;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.timelineCardItem h3 {
+  font-size: 24px;
+  color: #fff;
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.timelineDesc {
+  font-size: 14px;
+  color: #c9c4cf;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.timelineMetricsStrip {
+  background: rgba(232, 184, 79, 0.06);
+  border: 1px solid rgba(232, 184, 79, 0.2);
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timelineMetricsStrip small {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--gold2);
+  font-family: 'Space Mono', monospace;
+}
+
+.timelineMetricsStrip strong {
+  font-size: 13px;
+  font-family: 'Space Mono', monospace;
+  color: #fff;
+}
+
+.timelineDeliverables small {
+  display: block;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 10px;
+}
+
+.timelineDeliverables ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.timelineDeliverables li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #e2dfec;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.goldBullet {
+  color: var(--gold1);
+  font-size: 9px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   PHASE 3: FOUNDER'S PERSPECTIVE / COCKPIT RIGOR BLOCK
+============================================================ */
+.founderQuoteCard {
+  background: linear-gradient(135deg, rgba(14, 11, 26, 0.88) 0%, rgba(6, 5, 14, 0.96) 100%);
+  border: 1px solid rgba(232, 184, 79, 0.28);
+  border-radius: 18px;
+  padding: 36px 32px;
+  margin: 28px 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.founderQuoteCard::before {
+  content: "“";
+  position: absolute;
+  top: -20px;
+  right: 28px;
+  font-size: 160px;
+  font-family: serif;
+  color: rgba(232, 184, 79, 0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.founderCardHeader {
+  margin-bottom: 20px;
+}
+
+.aviationWingsBadge {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--gold1);
+  background: rgba(232, 184, 79, 0.1);
+  border: 1px solid rgba(232, 184, 79, 0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.founderQuoteCard blockquote {
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.7;
+  color: #f3f0fa;
+  margin: 0 0 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.founderSignoff {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.founderAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--gold1);
+  flex-shrink: 0;
+}
+
+.founderAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.founderSignoff strong {
+  display: block;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.founderSignoff span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   PHASE 3: STORY SHOWCASE CARDS (ABOUT PAGE)
+============================================================ */
+.storyShowcaseGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 28px;
+}
+
+@media (max-width: 860px) {
+  .storyShowcaseGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.storyShowcaseCard {
+  background: rgba(12, 10, 24, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.storyShowcaseCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 184, 79, 0.3);
+}
+
+.storyShowcaseImgWrapper {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  background: #080712;
+}
+
+.storyShowcaseImgWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.storyShowcaseCard:hover .storyShowcaseImgWrapper img {
+  transform: scale(1.03);
+}
+
+.storyShowcaseTag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(5, 5, 12, 0.82);
+  border: 1px solid rgba(232, 184, 79, 0.4);
+  color: var(--gold1);
+  font-size: 9.5px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  backdrop-filter: blur(8px);
+}
+
+.storyShowcaseContent {
+  padding: 22px;
+}
+
+.storyShowcaseContent small {
+  display: block;
+  font-size: 9px;
+  color: var(--gold2);
+  letter-spacing: 0.14em;
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 6px;
+}
+
+.storyShowcaseContent h3 {
+  font-size: 18px;
+  color: #fff;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.storyShowcaseContent p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ============================================================
+   PHASE 3: TECHNOLOGY 3-PILLAR CLOSED-LOOP ARCHITECTURE
+============================================================ */
+.techArchitectureWrapper {
+  margin: 18px 0 42px;
+  background: rgba(8, 7, 18, 0.72);
+  border: 1px solid rgba(232, 184, 79, 0.2);
+  border-radius: 18px;
+  padding: 32px 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.techArchitectureHeader {
+  margin-bottom: 28px;
+}
+
+.archHeaderBadge {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--gold1);
+  background: rgba(232, 184, 79, 0.1);
+  border: 1px solid rgba(232, 184, 79, 0.3);
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.techArchitectureHeader h3 {
+  font-size: 26px;
+  color: #fff;
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+.techArchitectureHeader p {
+  font-size: 14px;
+  color: #c9c4cf;
+  max-width: 760px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.techPillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  position: relative;
+}
+
+@media (max-width: 950px) {
+  .techPillarsGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.techPillarCard {
+  background: rgba(14, 11, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.techPillarCard:hover, .techPillarCard.active {
+  border-color: rgba(232, 184, 79, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.pillarCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.pillarHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pillarIcon {
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(232, 184, 79, 0.1);
+  border: 1px solid rgba(232, 184, 79, 0.25);
+  flex-shrink: 0;
+}
+
+.pillarNum {
+  display: block;
+  font-size: 9.5px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.14em;
+  color: var(--gold2);
+  margin-bottom: 2px;
+}
+
+.pillarHeaderLeft h4 {
+  font-size: 20px;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.pillarBadge {
+  font-size: 9px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.pillarSub {
+  font-size: 11.5px;
+  font-family: 'Space Mono', monospace;
+  color: var(--gold2);
+  margin: 4px 0 10px;
+  letter-spacing: 0.02em;
+}
+
+.pillarDesc {
+  font-size: 13px;
+  color: #b3adbd;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+.pillarTechList {
+  margin-bottom: 16px;
+}
+
+.pillarTechList small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 8px;
+}
+
+.pillarTechList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pillarTechList li {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.pillarTechList strong {
+  display: block;
+  font-size: 12px;
+  color: #f3f0fa;
+  margin-bottom: 2px;
+}
+
+.pillarTechList span {
+  display: block;
+  font-size: 11px;
+  color: #a49eaf;
+  line-height: 1.35;
+}
+
+.pillarThroughput {
+  background: rgba(232, 184, 79, 0.06);
+  border: 1px solid rgba(232, 184, 79, 0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.pillarThroughput small {
+  display: block;
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  color: var(--gold2);
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 2px;
+}
+
+.pillarThroughput span {
+  display: block;
+  font-size: 11.5px;
+  font-family: 'Space Mono', monospace;
+  color: #fff;
+}
+
+.pillarConnectorArrow {
+  display: none;
+}
+
+@media (min-width: 951px) {
+  .pillarConnectorArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #080712;
+    border: 1px solid rgba(232, 184, 79, 0.4);
+    color: var(--gold1);
+    font-size: 14px;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.architectureFeedbackLoop {
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px dashed rgba(232, 184, 79, 0.3);
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.loopIcon {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.loopContent strong {
+  display: block;
+  font-size: 13.5px;
+  color: var(--gold1);
+  font-family: 'Outfit', sans-serif;
+  margin-bottom: 4px;
+}
+
+.loopContent p {
+  font-size: 12.5px;
+  color: #b3adbd;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   PHASE 3: HEADQUARTERS TERMINAL CARD (CONTACT PAGE)
+============================================================ */
+.hqTerminalCard {
+  margin-top: 32px;
+  background: rgba(10, 8, 22, 0.85);
+  border: 1px solid rgba(232, 184, 79, 0.28);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.hqTerminalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(232, 184, 79, 0.08);
+  border-bottom: 1px solid rgba(232, 184, 79, 0.2);
+}
+
+.hqCoordBadge {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gold1);
+}
+
+.hqAltBadge {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.hqTerminalBody {
+  padding: 20px;
+}
+
+.hqTerminalBody h4 {
+  font-size: 16px;
+  color: #fff;
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.hqTerminalBody p {
+  font-size: 12.5px;
+  color: #c9c4cf;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+.hqTransitInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+
+.hqTransitInfo span {
+  font-size: 11.5px;
+  color: #b3adbd;
+  font-family: 'Space Mono', monospace;
+}
+
+.hqHoursInfo {
+  margin-bottom: 16px;
+}
+
+.hqHoursInfo small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 3px;
+}
+
+.hqHoursInfo span {
+  display: block;
+  font-size: 11.5px;
+  color: #a49eaf;
+}
+
+.hqMapsBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: rgba(232, 184, 79, 0.12);
+  border: 1px solid rgba(232, 184, 79, 0.35);
+  color: var(--gold1);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.hqMapsBtn:hover {
+  background: var(--gold1);
+  color: #0c0a06;
+  border-color: var(--gold1);
+}
+
+/* ============================================================
+   PHASE 3: TEAM PORTRAITS UNIFORM 1:1 RATIO & BADGES
+============================================================ */
+.teamPortrait {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 12px !important;
+  height: auto !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background: radial-gradient(circle, rgba(166, 92, 255, .18), transparent 60%) !important;
+  border: 1px solid rgba(166, 92, 255, .15) !important;
+}
+
+.teamPortrait img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center 15% !important;
+  transition: transform .35s ease !important;
+}
+
+.teamCard:hover .teamPortrait img {
+  transform: scale(1.04) !important;
+}
+
+.teamMemberBadge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: rgba(5, 5, 12, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(232, 184, 79, 0.35);
+  color: var(--gold1);
+  font-family: 'Space Mono', monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  padding: 5px 8px;
+  border-radius: 5px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+/* ============================================================
+   PHASE 3: TOUCH MOMENTUM & ERGONOMICS
+============================================================ */
+.networkPillSelector,
+.timelineYearNav,
+.droneRibbon,
+.categoryRail,
+.personaTabsBar,
+.filterBar,
+.facilitiesTableWrapper,
+.specsTableWrapper {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.floatCall {
+  right: calc(22px + env(safe-area-inset-right, 0px)) !important;
+  bottom: calc(22px + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+
 
 

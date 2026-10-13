@@ -6,6 +6,7 @@ import { SectionBlock } from "../components/ui/SectionBlock";
 import { IconCards } from "../components/ui/IconCards";
 import { DetailList } from "../components/ui/DetailList";
 import { Icon } from "../components/ui/Icon";
+import { TechArchitecturePillars } from "../components/sections/TechArchitecturePillars";
 
 export function TechnologyPage() {
   return (
@@ -19,6 +20,18 @@ export function TechnologyPage() {
       description="A coherent working stack across sensing, geospatial intelligence, AI, agriculture, autonomy and digital infrastructure."
       image={technologyImage}
     >
+      {/* 3-Pillar Closed Loop Architecture */}
+      <SectionBlock
+        eyebrow="System Framework"
+        title={
+          <>
+            From sensing to <em>autonomous execution.</em>
+          </>
+        }
+      >
+        <TechArchitecturePillars />
+      </SectionBlock>
+
       <SectionBlock
         eyebrow="Technology domains"
         title={
