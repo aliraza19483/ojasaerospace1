@@ -489,11 +489,18 @@ export default function Solutions() {
     observer.observe(orbit);
     return () => observer.disconnect();
   }, []);
+  const [submittedRef, setSubmittedRef] = useState<string | null>(null);
+  const [submittedData, setSubmittedData] = useState<{ name: string; email: string; interest: string; message: string } | null>(null);
   const prepareEmail = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const body = `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nInterest: ${data.get("interest")}\n\n${data.get("message")}`;
-    window.location.href = `mailto:info@ojasspace.com?subject=${encodeURIComponent("Website enquiry — " + data.get("interest"))}&body=${encodeURIComponent(body)}`;
+    const name = String(data.get("name") || "");
+    const email = String(data.get("email") || "");
+    const interest = String(data.get("interest") || "");
+    const message = String(data.get("message") || "");
+    const code = `OJAS-ENQ-${Math.floor(1000 + Math.random() * 9000)}`;
+    setSubmittedRef(code);
+    setSubmittedData({ name, email, interest, message });
     setMailReady(true);
   };
   return (
@@ -509,9 +516,12 @@ export default function Solutions() {
               window.scrollTo(0, 0);
             }}
           >
-            <span className="hpQuickBadge">CONFIRMED CATEGORIES</span>
-            <b>4 Drone Categories</b>
-            <small>Agricultural · Logistics · Photography · Industrial ↗</small>
+            <div className="hpQuickIconWrap">🛸</div>
+            <div>
+              <span className="hpQuickBadge">CONFIRMED CATEGORIES</span>
+              <b>4 Drone Categories</b>
+              <small>Agricultural · Logistics · Photography · Industrial ↗</small>
+            </div>
           </div>
           <div
             className="hpQuickItem"
@@ -521,9 +531,12 @@ export default function Solutions() {
               window.scrollTo(0, 0);
             }}
           >
-            <span className="hpQuickBadge">CORE SERVICES</span>
-            <b>4 Core Services</b>
-            <small>Sales · Repair & Maintenance · Training · Rental ↗</small>
+            <div className="hpQuickIconWrap">⚡</div>
+            <div>
+              <span className="hpQuickBadge">CORE SERVICES</span>
+              <b>4 Core Services</b>
+              <small>Sales · Repair & Maintenance · Training · Rental ↗</small>
+            </div>
           </div>
           <div
             className="hpQuickItem"
@@ -533,9 +546,12 @@ export default function Solutions() {
               window.scrollTo(0, 0);
             }}
           >
-            <span className="hpQuickBadge">AGRO AI ECOSYSTEM</span>
-            <b>MILU AI Platform</b>
-            <small>Hardoi Sugarcane Belt Pilot · Crop Health Alerts ↗</small>
+            <div className="hpQuickIconWrap">🧠</div>
+            <div>
+              <span className="hpQuickBadge">AGRO AI ECOSYSTEM</span>
+              <b>MILU AI Platform</b>
+              <small>Hardoi Sugarcane Belt Pilot · Crop Health Alerts ↗</small>
+            </div>
           </div>
           <div
             className="hpQuickItem"
@@ -545,9 +561,12 @@ export default function Solutions() {
               window.scrollTo(0, 0);
             }}
           >
-            <span className="hpQuickBadge">TWO-LEVEL NETWORK</span>
-            <b>Drone Ports & Centres</b>
-            <small>Dehradun HQ · District Ports · Block Centres ↗</small>
+            <div className="hpQuickIconWrap">📡</div>
+            <div>
+              <span className="hpQuickBadge">TWO-LEVEL NETWORK</span>
+              <b>Drone Ports & Centres</b>
+              <small>Dehradun HQ · District Ports · Block Centres ↗</small>
+            </div>
           </div>
         </div>
 
@@ -1073,6 +1092,24 @@ export default function Solutions() {
           <a className="contact-email" href="mailto:info@ojasspace.com">
             info@ojasspace.com <span>↗</span>
           </a>
+          <a
+            className="contact-whatsapp"
+            href="https://wa.me/911354316767?text=Hello%20OJAS%20Aerospace%2C%20I%20would%20like%20to%20inquire%20about%20drone%20platforms%20and%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              marginTop: 10,
+              color: "#25D366",
+              fontWeight: 600,
+              fontSize: "14px",
+              textDecoration: "none"
+            }}
+          >
+            <span>💬</span> WhatsApp: 0135 431 6767 ↗
+          </a>
           <div className="office-details">
             <span>FIND US</span>
             <p>
@@ -1082,62 +1119,171 @@ export default function Solutions() {
             </p>
           </div>
         </div>
-        <form onSubmit={prepareEmail}>
-          <div className="form-row">
-            <label htmlFor="sol-name">
-              Your name
-              <input
-                id="sol-name"
-                name="name"
-                placeholder="Name"
-                required
-                autoComplete="name"
-                maxLength={120}
-              />
-            </label>
-            <label htmlFor="sol-email">
-              Email address
-              <input
-                id="sol-email"
-                name="email"
-                type="email"
-                placeholder="you@company.com"
-                required
-                autoComplete="email"
-                maxLength={200}
-              />
-            </label>
+        {submittedRef ? (
+          <div
+            className="contactSuccessCard"
+            style={{
+              textAlign: "center",
+              padding: "40px 24px",
+              background: "rgba(255, 255, 255, 0.02)",
+              border: "1px solid rgba(232, 184, 79, 0.3)",
+              borderRadius: "14px",
+            }}
+          >
+            <div
+              style={{
+                width: 48,
+                height: 48,
+                borderRadius: "50%",
+                background: "rgba(232, 184, 79, 0.15)",
+                border: "1px solid var(--gold2)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "0 auto 16px",
+                color: "var(--gold2)",
+              }}
+            >
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <h3 style={{ fontSize: "20px", color: "#fff", marginBottom: 8 }}>Enquiry Registered</h3>
+            <span
+              style={{
+                display: "inline-block",
+                background: "rgba(232, 184, 79, 0.12)",
+                border: "1px solid var(--gold2)",
+                color: "var(--gold2)",
+                padding: "4px 14px",
+                borderRadius: "999px",
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "13px",
+                letterSpacing: "0.08em",
+                marginBottom: 14,
+              }}
+            >
+              {submittedRef}
+            </span>
+            <p style={{ color: "rgba(255, 255, 255, 0.75)", fontSize: "14px", maxWidth: 420, margin: "0 auto 20px", lineHeight: 1.6 }}>
+              Thank you, <strong style={{ color: "#fff" }}>{submittedData?.name}</strong>. Your enquiry regarding{" "}
+              <strong style={{ color: "var(--gold2)" }}>{submittedData?.interest}</strong> has been logged with our regional team.
+            </p>
+            <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+              <a
+                href={`https://wa.me/911354316767?text=${encodeURIComponent(
+                  `Hello OJAS Aerospace, I registered enquiry ${submittedRef} regarding ${submittedData?.interest}.\nName: ${submittedData?.name}\nEmail: ${submittedData?.email}\nMessage: ${submittedData?.message}`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn goldBtn"
+                style={{
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "10px 18px",
+                  fontSize: "13px",
+                }}
+              >
+                <span>💬</span> Connect via WhatsApp ↗
+              </a>
+              <a
+                href={`mailto:info@ojasspace.com?subject=${encodeURIComponent(
+                  `Enquiry [${submittedRef}] — ${submittedData?.interest}`
+                )}&body=${encodeURIComponent(
+                  `Reference: ${submittedRef}\nName: ${submittedData?.name}\nEmail: ${submittedData?.email}\nInterest: ${submittedData?.interest}\n\n${submittedData?.message}`
+                )}`}
+                className="btn outlineBtn"
+                style={{
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "10px 18px",
+                  fontSize: "13px",
+                }}
+              >
+                <span>✉</span> Send Email Copy ↗
+              </a>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setSubmittedRef(null);
+                setSubmittedData(null);
+              }}
+              style={{
+                background: "transparent",
+                border: "none",
+                color: "var(--muted)",
+                fontSize: "12px",
+                textDecoration: "underline",
+                cursor: "pointer",
+                padding: "6px 12px",
+              }}
+            >
+              Submit another enquiry ↺
+            </button>
           </div>
-          <label htmlFor="sol-interest">
-            I’m interested in
-            <select id="sol-interest" name="interest">
-              <option>Project & services</option>
-              <option>Technology partnership</option>
-              <option>MILU AI Network</option>
-              <option>Careers</option>
-              <option>General enquiry</option>
-            </select>
-          </label>
-          <label htmlFor="sol-message">
-            Tell us a little more
-            <textarea
-              id="sol-message"
-              name="message"
-              placeholder="What would you like to build, solve or explore?"
-              required
-              rows={3}
-              maxLength={3000}
-            />
-          </label>
-          <button type="submit" className="contact-submit">
-            Prepare enquiry <span>↗</span>
-          </button>
-          <p className="form-note" role="status">
-            {mailReady
-              ? "Your email app has been requested. Review and send your enquiry there, or email us directly."
-              : "Opens your email app with the details ready for you to review and send."}
-          </p>
-        </form>
+        ) : (
+          <form onSubmit={prepareEmail}>
+            <div className="form-row">
+              <label htmlFor="sol-name">
+                Your name
+                <input
+                  id="sol-name"
+                  name="name"
+                  placeholder="Name"
+                  required
+                  autoComplete="name"
+                  maxLength={120}
+                />
+              </label>
+              <label htmlFor="sol-email">
+                Email address
+                <input
+                  id="sol-email"
+                  name="email"
+                  type="email"
+                  placeholder="you@company.com"
+                  required
+                  autoComplete="email"
+                  maxLength={200}
+                />
+              </label>
+            </div>
+            <label htmlFor="sol-interest">
+              I’m interested in
+              <select id="sol-interest" name="interest">
+                <option>Project & services</option>
+                <option>Technology partnership</option>
+                <option>MILU AI Network</option>
+                <option>Careers</option>
+                <option>General enquiry</option>
+              </select>
+            </label>
+            <label htmlFor="sol-message">
+              Tell us a little more
+              <textarea
+                id="sol-message"
+                name="message"
+                placeholder="What would you like to build, solve or explore?"
+                required
+                rows={3}
+                maxLength={3000}
+              />
+            </label>
+            <button type="submit" className="contact-submit">
+              Prepare enquiry <span>↗</span>
+            </button>
+            <p className="form-note" role="status">
+              {mailReady
+                ? "Your email app has been requested. Review and send your enquiry there, or email us directly."
+                : "Opens your email app with the details ready for you to review and send."}
+            </p>
+          </form>
+        )}
       </section>
     </div>
   );
