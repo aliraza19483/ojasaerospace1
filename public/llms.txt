@@ -1,0 +1,24 @@
+# OJAS Aerospace
+
+> OJAS Aerospace connects aerospace systems, AI and field infrastructure into a continuously sensing, learning and acting network. It builds intelligent aerospace systems and distributed field infrastructure — from drone/UAV operations and geospatial intelligence to the MILU AI decision layer — serving agriculture, infrastructure monitoring, disaster response, surveillance, logistics and energy sectors, primarily across India.
+
+OJAS Aerospace is based in Dehradun, Uttarakhand, India. Contact: info@ojasspace.com, +91-135-431-6767.
+
+## Company
+- [About](https://www.ojasaerospace.com/about): What drives OJAS — a service-led systems company bringing aerospace, intelligent systems, infrastructure and applied R&D together.
+- [Team](https://www.ojasaerospace.com/team): The multidisciplinary team building OJAS across technology, aerospace R&D, operations, business and design.
+- [Partners](https://www.ojasaerospace.com/partners): The OJAS ecosystem of complementary organisations and operating environments.
+- [Careers](https://www.ojasaerospace.com/careers): Open roles across aerospace, AI/software, field technology and business operations.
+- [Contact](https://www.ojasaerospace.com/contact): Partnerships, technology conversations, projects, services or careers.
+
+## What OJAS does
+- [Sectors](https://www.ojasaerospace.com/sectors): The operating contexts OJAS serves — agriculture, infrastructure, security, logistics, geospatial, energy.
+- [Solutions](https://www.ojasaerospace.com/solutions): Six solution domains — Surveillance & Reconnaissance, Earth Observation, Precision Agriculture, Infrastructure Monitoring, Disaster Response, Autonomous Logistics.
+- [Services](https://www.ojasaerospace.com/services): Task-oriented services across agriculture, mapping, monitoring, logistics, emergency response, infrastructure, media and drone operations.
+- [Technology](https://www.ojasaerospace.com/technology): The working stack across sensing, geospatial intelligence, AI, agriculture, autonomy and digital infrastructure.
+- [MILU AI](https://www.ojasaerospace.com/milu-ai): OJAS's intelligence layer — connects field signals and operational data so the network can understand, decide, act and learn.
+- [MILU AI Network](https://www.ojasaerospace.com/milu-ai-network): The distributed infrastructure that brings intelligence and field capability closer to where work happens.
+- [Network](https://www.ojasaerospace.com/network): How OJAS connects people, places, platforms, partners, customers and operations.
+
+## Optional
+- [News, Stories & Media](https://www.ojasaerospace.com/news): Company developments, field stories, technology updates and events.

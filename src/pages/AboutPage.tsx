@@ -1,0 +1,182 @@
+import React from "react";
+import aboutImage from "../assets/about.webp";
+import teamDroneLab from "../assets/team-drone-lab.webp";
+import teamFieldDeployment from "../assets/team-field-deployment.webp";
+import { coreValues } from "../constants/values";
+import { StandardPage } from "../components/ui/StandardPage";
+import { SectionBlock } from "../components/ui/SectionBlock";
+import { Icon } from "../components/ui/Icon";
+
+export function AboutPage() {
+  return (
+    <StandardPage
+      question="What drives OJAS Aerospace?"
+      title={
+        <>
+          Engineering the Future. <em>Connecting Intelligence.</em>
+        </>
+      }
+      description="OJAS Aerospace Private Limited connects drone hardware, local service infrastructure, and digital intelligence into a distributed network—making drone technology more accessible, reliable, and practical across India."
+      image={aboutImage}
+    >
+      {/* Vision & Mission */}
+      <SectionBlock
+        eyebrow="Vision & Mission"
+        title={
+          <>
+            Technology built to solve <em>real operational needs.</em>
+          </>
+        }
+      >
+        <div className="visionMissionGrid">
+          <div className="visionCard">
+            <div className="vmIcon">
+              <Icon name="target" />
+            </div>
+            <small>OUR VISION</small>
+            <h3>Useful drone technology accessible to all.</h3>
+            <p>
+              To make useful drone technology and digital intelligence more accessible to communities, businesses, and industries across India.
+            </p>
+          </div>
+
+          <div className="missionCard">
+            <div className="vmIcon">
+              <Icon name="drone" />
+            </div>
+            <small>OUR MISSION</small>
+            <h3>Products, network & technology-led solutions.</h3>
+            <p>
+              To provide suitable drone products and services, build a dependable network of district Drone Ports and block Drone Centres, and develop technology-led solutions that address real operational needs.
+            </p>
+          </div>
+        </div>
+
+        <div className="approachCallout">
+          <small>OUR APPROACH</small>
+          <h3>An integrated approach beyond standalone hardware</h3>
+          <p>
+            We bring together equipment, local service access, operator skills, maintenance support, and digital platforms. The goal is not only to supply drones, but also to make their use more practical and supportable over time.
+          </p>
+        </div>
+      </SectionBlock>
+
+      {/* 7 Core Values */}
+      <SectionBlock
+        eyebrow="Core Values"
+        title={
+          <>
+            The principles that guide <em>every operation.</em>
+          </>
+        }
+      >
+        <div className="coreValuesGrid">
+          {coreValues.map((val) => (
+            <article key={val.title} className="coreValueCard">
+              <div className="valCardHead">
+                <div className="iconBubble">
+                  <Icon name={val.icon} />
+                </div>
+                <small>{val.tagline}</small>
+                <h3>{val.title}</h3>
+              </div>
+              <p>{val.description}</p>
+            </article>
+          ))}
+        </div>
+      </SectionBlock>
+
+      {/* Lab to Field Story */}
+      <SectionBlock
+        eyebrow="From Lab to Field"
+        title={
+          <>
+            Where aerospace R&D meets <em>grassroots execution.</em>
+          </>
+        }
+      >
+        <div className="storyShowcaseGrid">
+          {/* Card 1: R&D Lab & Safety Cage */}
+          <div className="storyShowcaseCard">
+            <div className="storyShowcaseImgWrapper">
+              <img
+                src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.42.50%20AM%20(1).jpeg"
+                alt="Propulsion motor test cage with official OJAS aerospace branding at Dehradun central lab"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="storyShowcaseTag">DEHRADUN LAB</span>
+            </div>
+            <div className="storyShowcaseContent">
+              <small>CENTRAL R&D & PROPULSION DYNAMOMETER</small>
+              <h3>Dehradun Engineering Lab & Propulsion Rig</h3>
+              <p>
+                Our central facility in Dehradun, Uttarakhand, conducts precision motor dynamometer testing, ESC calibration, and structural airframe prototyping under strict aerospace safety protocols.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2: RPTO Academy Batch */}
+          <div className="storyShowcaseCard">
+            <div className="storyShowcaseImgWrapper">
+              <img
+                src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.42.53%20AM%20(1).jpeg"
+                alt="RPTO Academy batch of 40+ drone pilot students and instructors with agricultural drones"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="storyShowcaseTag">PILOT ACADEMY</span>
+            </div>
+            <div className="storyShowcaseContent">
+              <small>DGCA RPTO TRAINING EXCELLENCE</small>
+              <h3>Remote Pilot Academy & Graduating Cadets</h3>
+              <p>
+                Nurturing India's next generation of certified commercial remote pilots with rigorous ground theory, simulator flight hours, and hands-on agricultural spraying applicator certifications.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 3: Grassroots Field Operations */}
+          <div className="storyShowcaseCard">
+            <div className="storyShowcaseImgWrapper">
+              <img
+                src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.45.02%20AM.jpeg"
+                alt="Field outreach with farmers holding official OJAS Aerospace and HAL banner"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="storyShowcaseTag">GROUND PROOF</span>
+            </div>
+            <div className="storyShowcaseContent">
+              <small>DISTRICT PORTS & BLOCK CENTRES</small>
+              <h3>Grassroots Execution & Farmer Partnerships</h3>
+              <p>
+                Working hand-in-hand with agricultural cooperatives, village growers, and enterprise sugar mills—bringing high-tech aerial precision directly to rural India's farming communities.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 4: Aviation Cockpit Experience */}
+          <div className="storyShowcaseCard">
+            <div className="storyShowcaseImgWrapper">
+              <img
+                src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.46.14%20AM.jpeg"
+                alt="Flight leadership in aircraft cockpit with aviation headsets"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="storyShowcaseTag">AVIATION ROOTS</span>
+            </div>
+            <div className="storyShowcaseContent">
+              <small>PILOT MINDSET & AEROSPACE FOUNDATION</small>
+              <h3>Aeronautical Heritage & Flight Discipline</h3>
+              <p>
+                Founded and steered by aviation practitioners with deep cockpit and flight operations background, ensuring every unmanned drone system is built with civil aviation rigor and airmanship.
+              </p>
+            </div>
+          </div>
+        </div>
+      </SectionBlock>
+    </StandardPage>
+  );
+}

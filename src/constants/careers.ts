@@ -1,0 +1,68 @@
+import { CareerItem } from "../types";
+
+export const careerSeed: CareerItem[] = [
+  {
+    title: "Lead Avionics & Flight Control Engineer",
+    text: "Design and validate flight controllers, RTK navigation integration, sensor fusion, and fail-safe autonomy protocols for multi-rotor systems.",
+    icon: "cpu",
+    department: "Aerospace",
+    location: "Dehradun Lab",
+    type: "Full-Time",
+  },
+  {
+    title: "Senior Computer Vision / Edge AI Engineer",
+    text: "Develop low-latency perception models for onboard edge compute (NVIDIA Jetson) delivering real-time anomaly and obstacle segmentation.",
+    icon: "brain",
+    department: "AI & Software",
+    location: "Hybrid / Dehradun",
+    type: "Full-Time",
+  },
+  {
+    title: "Chief Drone Fleet Operations Lead",
+    text: "Direct commercial flight missions, pilot scheduling, airworthiness safety protocols, and DGCA regulatory compliance across national deployments.",
+    icon: "drone",
+    department: "Field",
+    location: "Field Deployments",
+    type: "Full-Time",
+  },
+  {
+    title: "Geospatial Data Pipeline Engineer",
+    text: "Architect automated photogrammetry and LiDAR point cloud pipelines processing terabytes of multi-band aerial telemetry into GIS insights.",
+    icon: "map",
+    department: "Engineering",
+    location: "Remote / Hybrid",
+    type: "Full-Time",
+  },
+  {
+    title: "Precision Agronomy Systems Specialist",
+    text: "Translate multispectral NDVI, NDRE and thermal aerial data into prescription variable-rate application maps for agriculture cooperatives.",
+    icon: "leaf",
+    department: "Agriculture",
+    location: "Punjab / North India",
+    type: "Full-Time",
+  },
+  {
+    title: "UAV Airframe Design & Composite Specialist",
+    text: "Carbon-fiber composite fabrication, structural FEA analysis, payload bay modularization, and aerodynamic airframe optimization.",
+    icon: "wrench",
+    department: "Aerospace",
+    location: "Dehradun Lab",
+    type: "Full-Time",
+  },
+  {
+    title: "Mission Planning & Ground Control Systems Dev",
+    text: "Develop telemetry dashboards, BVLOS mission routing, and automated geofencing software interfacing with national airspace systems.",
+    icon: "route",
+    department: "AI & Software",
+    location: "Hybrid",
+    type: "Full-Time",
+  },
+  {
+    title: "Enterprise Solutions & Defense Liaison",
+    text: "Lead enterprise technical proposals and partnership agreements across industrial, energy, and sovereign defense aerospace sectors.",
+    icon: "network",
+    department: "Business",
+    location: "Delhi NCR / Dehradun",
+    type: "Full-Time",
+  },
+];
