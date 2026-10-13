@@ -34,7 +34,7 @@ export function PrivacyPage() {
           <h2>2. Information We Collect</h2>
           <h3>A. Customer & Inquiry Details</h3>
           <p>
-            When you submit an operational inquiry via our website, WhatsApp link, phone, or service
+            When you submit an operational inquiry via our website, telephone helpline, email, or service
             port, we collect your name, phone number, email address, physical location (State, District,
             Block), and equipment interest (Categories, Services, Training, Partnerships).
           </p>

@@ -1093,22 +1093,20 @@ export default function Solutions() {
             info@ojasspace.com <span>↗</span>
           </a>
           <a
-            className="contact-whatsapp"
-            href="https://wa.me/911354316767?text=Hello%20OJAS%20Aerospace%2C%20I%20would%20like%20to%20inquire%20about%20drone%20platforms%20and%20services."
-            target="_blank"
-            rel="noopener noreferrer"
+            className="contact-phone"
+            href="tel:01354316767"
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
               marginTop: 10,
-              color: "#25D366",
+              color: "var(--gold2)",
               fontWeight: 600,
               fontSize: "14px",
-              textDecoration: "none"
+              textDecoration: "none",
             }}
           >
-            <span>💬</span> WhatsApp: 0135 431 6767 ↗
+            <span>📞</span> Helpline: 0135 431 6767 ↗
           </a>
           <div className="office-details">
             <span>FIND US</span>
@@ -1171,11 +1169,7 @@ export default function Solutions() {
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
               <a
-                href={`https://wa.me/911354316767?text=${encodeURIComponent(
-                  `Hello OJAS Aerospace, I registered enquiry ${submittedRef} regarding ${submittedData?.interest}.\nName: ${submittedData?.name}\nEmail: ${submittedData?.email}\nMessage: ${submittedData?.message}`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="tel:01354316767"
                 className="btn goldBtn"
                 style={{
                   textDecoration: "none",
@@ -1186,7 +1180,7 @@ export default function Solutions() {
                   fontSize: "13px",
                 }}
               >
-                <span>💬</span> Connect via WhatsApp ↗
+                <span>📞</span> Call Helpline: 0135 431 6767 ↗
               </a>
               <a
                 href={`mailto:info@ojasspace.com?subject=${encodeURIComponent(

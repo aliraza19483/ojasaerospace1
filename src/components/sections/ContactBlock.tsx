@@ -3,7 +3,7 @@ import { Eyebrow } from "../ui/Eyebrow";
 
 export function ContactBlock() {
   const [name, setName] = useState("");
-  const [contactMethod, setContactMethod] = useState("WhatsApp");
+  const [contactMethod, setContactMethod] = useState("Phone Call");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [locationState, setLocationState] = useState("Uttarakhand");
@@ -42,17 +42,6 @@ export function ContactBlock() {
           <div>
             <small>TELEPHONE / HELPLINE</small>
             <a href="tel:01354316767">0135 431 6767</a>
-          </div>
-          <div>
-            <small>INSTANT WHATSAPP CONNECT</small>
-            <a
-              href="https://wa.me/911354316767?text=Hello%20OJAS%20Aerospace%2C%20I%20would%20like%20to%20inquire%20about%20drone%20platforms%20and%20services."
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "#25D366", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 6 }}
-            >
-              <span>💬</span> Chat with Regional Team ↗
-            </a>
           </div>
           <div>
             <small>OFFICIAL EMAIL</small>
@@ -142,7 +131,6 @@ export function ContactBlock() {
                   onChange={(e) => setContactMethod(e.target.value)}
                   className="contactSelect"
                 >
-                  <option value="WhatsApp">WhatsApp Message</option>
                   <option value="Phone Call">Phone Call</option>
                   <option value="Email">Email</option>
                 </select>
@@ -151,7 +139,7 @@ export function ContactBlock() {
 
             <div className="formRow">
               <label>
-                PHONE / WHATSAPP NUMBER *
+                PHONE / MOBILE NUMBER *
                 <input
                   required
                   type="tel"

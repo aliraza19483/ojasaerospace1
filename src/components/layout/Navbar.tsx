@@ -219,13 +219,11 @@ export function Navbar() {
             START A CONVERSATION <span>→</span>
           </button>
           <a
-            href="https://wa.me/911354316767?text=Hello%20OJAS%20Aerospace%2C%20I%20would%20like%20to%20inquire%20about%20drone%20platforms%20and%20services."
-            target="_blank"
-            rel="noopener noreferrer"
+            href="tel:01354316767"
             className="mobileWhatsAppBtn"
             onClick={() => setMobileOpen(false)}
           >
-            <span>💬</span> CHAT ON WHATSAPP ↗
+            <span>📞</span> CALL HELPLINE: 0135 431 6767
           </a>
         </div>
       </div>

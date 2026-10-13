@@ -19,7 +19,7 @@ export function InquiryModal() {
   const [service, setService] = useState("Agricultural Drones / Spraying");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [contactMethod, setContactMethod] = useState("WhatsApp");
+  const [contactMethod, setContactMethod] = useState("Phone Call");
   const [stateName, setStateName] = useState("Uttarakhand");
   const [district, setDistrict] = useState("");
   const [message, setMessage] = useState("");
@@ -98,20 +98,6 @@ export function InquiryModal() {
             </p>
             <p>Our coordinator will connect with you via {contactMethod} within 24 business hours.</p>
             <div className="inquirySuccessActions">
-              <a
-                href={`https://wa.me/911354316767?text=Hello%20OJAS%20Aerospace%2C%20I%20have%20submitted%20inquiry%20${submittedRef}%20regarding%20${encodeURIComponent(service)}.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inquirySuccessCall"
-                style={{
-                  background: "rgba(37, 211, 102, 0.12)",
-                  borderColor: "rgba(37, 211, 102, 0.4)",
-                  color: "#25D366",
-                  marginBottom: 8,
-                }}
-              >
-                💬 INSTANT UPDATES VIA WHATSAPP ↗
-              </a>
               <a href="tel:01354316767" className="inquirySuccessCall">
                 CALL CENTRAL COMMAND: 0135 431 6767
               </a>
@@ -139,7 +125,7 @@ export function InquiryModal() {
                 />
               </label>
               <label>
-                PHONE / WHATSAPP *
+                PHONE / MOBILE NUMBER *
                 <input
                   required
                   type="tel"
@@ -158,7 +144,6 @@ export function InquiryModal() {
                   onChange={(e) => setContactMethod(e.target.value)}
                   className="contactSelect"
                 >
-                  <option value="WhatsApp">WhatsApp</option>
                   <option value="Phone Call">Phone Call</option>
                   <option value="Email">Email</option>
                 </select>
@@ -228,14 +213,12 @@ export function InquiryModal() {
             </button>
 
             <div style={{ textAlign: "center", marginTop: 12 }}>
-              <span style={{ fontSize: 11, color: "var(--muted)" }}>Prefer direct messaging? </span>
+              <span style={{ fontSize: 11, color: "var(--muted)" }}>Need urgent coordination? </span>
               <a
-                href={`https://wa.me/911354316767?text=Hello%20OJAS%20Aerospace%2C%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(title || "drone platforms")}.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ fontSize: 11, color: "#25D366", fontWeight: 600, textDecoration: "none" }}
+                href="tel:01354316767"
+                style={{ fontSize: 11, color: "var(--gold2)", fontWeight: 600, textDecoration: "none" }}
               >
-                💬 Chat on WhatsApp ↗
+                📞 Call Command Desk: 0135 431 6767 ↗
               </a>
             </div>
           </form>
