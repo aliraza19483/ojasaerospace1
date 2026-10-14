@@ -1024,14 +1024,14 @@ export default function Solutions() {
       <section className="hp-about hp-section" id="company">
         <div className="about-visual">
           <img
-            src="/all%20image/drone-assembly-training-lab.jpg"
-            alt="OJAS Aerospace Dehradun Engineering Lab — Technical crew and engineers assembling operational agricultural airframe platform"
+            src="/all%20image/ojas-training-session.jpg"
+            alt="OJAS Aerospace Training Session — Expert instructor conducting drone technology and aerospace training for students"
             loading="lazy"
             decoding="async"
           />
           <span>ENGINEERING / INTELLIGENCE / INFRASTRUCTURE</span>
           <span className="photo-credit about-photo-credit">
-            OJAS Central Aerospace Lab · Airframe Assembly & Field Prep
+            OJAS Training Session · Drone Technology & Aerospace Education
           </span>
         </div>
         <div className="about-copy">
