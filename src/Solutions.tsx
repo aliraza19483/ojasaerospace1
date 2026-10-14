@@ -875,7 +875,7 @@ export default function Solutions() {
             id="milu-node-detail"
             aria-labelledby="milu-insight-title"
           >
-            
+
             <div
               className="milu-insight-live"
               aria-live="polite"
@@ -929,7 +929,7 @@ export default function Solutions() {
       <section className="hp-network hp-section" id="infrastructure">
         <div className="hp-heading">
           <div>
-            
+
             <h2>
               Closer to the field.
               <br />

@@ -28,50 +28,7 @@ export function MiluPage() {
       description="MILU AI connects drone operations, local network infrastructure, and an Agro AI Ecosystem—transforming raw aerial telemetry into geo-referenced, actionable decisions for farmers, operational teams, and enterprise mills."
       image={miluImage}
     >
-      {/* Strategic Ecosystem Context Callout */}
-      <div className="miluStrategicBanner">
-        <div className="strategicBannerHead">
-          <small>STRATEGIC INITIATIVE & FIELD VALIDATION</small>
-          <h3>Sugarcane Agro AI Pilot · Rupapur, Hardoi District</h3>
-        </div>
-        <p>
-          MILU AI is demonstrated through a targeted agricultural ecosystem proposal in the sugarcane belt of Rupapur, Hardoi district (Uttar Pradesh). The deployment combines drone spraying operations, local MILU AI Centres, crop monitoring, and a digital decision-support platform for both smallholder farmers and industrial sugar mills (such as DCM Shriram command areas).
-        </p>
 
-        <div className="miluFieldProofGrid">
-          <div className="miluFieldProofCard">
-            <div className="miluFieldProofImgWrapper">
-              <img
-                src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.42.56%20AM.jpeg"
-                alt="Live Telemetry Ground Control Station and Flight Diagnostics bench"
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="miluProofTag">TELEMETRY GCS BENCH</span>
-            </div>
-            <div className="miluFieldProofMeta">
-              <strong>Ground Station Telemetry & Edge Diagnostics</strong>
-              <span>Real-time flight path telemetry, RTK differential positioning, and sensor logging calibrated for field operations.</span>
-            </div>
-          </div>
-
-          <div className="miluFieldProofCard">
-            <div className="miluFieldProofImgWrapper">
-              <img
-                src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.45.00%20AM.jpeg"
-                alt="Agro spray validation field deployment with IFFCO Nano Urea"
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="miluProofTag">HARDOI FIELD TRIAL</span>
-            </div>
-            <div className="miluFieldProofMeta">
-              <strong>Sugarcane Spray Calibration & Input Efficiency</strong>
-              <span>Validation of variable-rate liquid droplet dispersion, canopy penetration, and micro-nutrient delivery.</span>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Feature Transparency System & Agro AI Ecosystem Grid */}
       <SectionBlock

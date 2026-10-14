@@ -886,12 +886,6 @@ function CompanyMenu({
   );
 }
 const navDropdowns: Record<string, { label: string; url: string }[]> = {
-  "/categories": [
-    { label: "Agricultural Drones", url: "/categories" },
-    { label: "Logistics Drones", url: "/categories" },
-    { label: "Photography Drones", url: "/categories" },
-    { label: "Industrial Drones", url: "/categories" },
-  ],
   "/services": [
     { label: "Drone Sales", url: "/services/drone-sale" },
     { label: "Repair & Maintenance", url: "/services/drone-repair-maintenance" },
