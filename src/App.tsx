@@ -36,6 +36,9 @@ import { TermsPage } from "./pages/TermsPage";
 import { CompliancePage } from "./pages/CompliancePage";
 import { InteractiveFleetShowcase } from "./components/sections/InteractiveFleetShowcase";
 import { initScrollReveal, triggerScrollRevealUpdate } from "./utils/scrollReveal";
+import { ServicesMenu, servicesMenuList } from "./components/layout/ServicesMenu";
+import { SectorsMenu } from "./components/layout/SectorsMenu";
+import { submitInquiryForm } from "./utils/formSubmit";
 
 import harshitDixit from "./assets/team/harshit-dixit.jpg";
 import aliRaza from "./assets/team/ali-raza.webp";
@@ -182,9 +185,9 @@ type ServiceContent = {
 };
 const services: ServiceContent[] = [
   {
-    slug: "drone-sale",
+    slug: "drone-sales",
     icon: "drone",
-    eyebrow: "Drone Sale",
+    eyebrow: "Drone Sales",
     title: "The right drone, built for the work it needs to do.",
     tagline:
       "Agriculture, mapping, surveillance and custom platforms — supplied, configured and registered, ready for the field.",
@@ -886,12 +889,6 @@ function CompanyMenu({
   );
 }
 const navDropdowns: Record<string, { label: string; url: string }[]> = {
-  "/services": [
-    { label: "Drone Sales", url: "/services/drone-sale" },
-    { label: "Repair & Maintenance", url: "/services/drone-repair-maintenance" },
-    { label: "Drone Training", url: "/services/drone-training" },
-    { label: "Drone Rental", url: "/services/drone-rental" },
-  ],
   "/network": [
     { label: "Dehradun Central HQ", url: "/network" },
     { label: "District Drone Ports", url: "/network" },
@@ -903,20 +900,61 @@ function Navbar() {
   const [theme, toggleTheme] = useTheme();
   const [path, setPath] = useState(location.pathname);
   const [menu, setMenu] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [sectorsOpen, setSectorsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = React.useRef<HTMLElement>(null);
+
   useEffect(() => {
-    const f = () => setPath(location.pathname);
+    const f = () => {
+      setPath(location.pathname);
+      setMenu(false);
+      setServicesOpen(false);
+      setSectorsOpen(false);
+    };
     addEventListener("popstate", f);
     return () => removeEventListener("popstate", f);
   }, []);
+
   useEffect(() => {
     document.body.classList.toggle("mobileNavOpen", mobileOpen);
     return () => document.body.classList.remove("mobileNavOpen");
   }, [mobileOpen]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenu(false);
+        setServicesOpen(false);
+        setSectorsOpen(false);
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  useEffect(() => {
+    if (!menu && !servicesOpen && !sectorsOpen) return;
+    const onDocClick = (e: MouseEvent) => {
+      const target = e.target as Node;
+      const inNav = navRef.current && navRef.current.contains(target);
+      const inDropdown = (target as Element).closest?.(".companyMenu");
+      if (!inNav && !inDropdown) {
+        setMenu(false);
+        setServicesOpen(false);
+        setSectorsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [menu, servicesOpen, sectorsOpen]);
+
   const home = path === "/" || path === "/home";
   const links: [string, string, string?][] = [
     ["HOME", "/"],
     ["DRONE CATEGORIES", "/categories"],
+    ["SECTORS", "/sectors"],
     ["SERVICES", "/services"],
     ["MILU AI", "/milu-ai"],
     ["NETWORK", "/network"],
@@ -930,13 +968,15 @@ function Navbar() {
   ];
   const handle = (url: string, section?: string) => {
     setMenu(false);
+    setServicesOpen(false);
+    setSectorsOpen(false);
     setMobileOpen(false);
     if (home && section) go(section);
     else navigate(url);
   };
   return (
     <>
-      <header className="navbar">
+      <header className="navbar" ref={navRef}>
         <button
           className="brand"
           onClick={() => (home ? go("home") : navigate("/"))}
@@ -955,32 +995,85 @@ function Navbar() {
           <i />
         </button>
         <div className="navDesktopLinks">
-          {links.map(([label, url, section]) => (
-            <div key={url} className="navItem">
-              <button
-                className={!home && path === url ? "active" : ""}
-                onClick={() => handle(url, section)}
-              >
-                {label}
-                {navDropdowns[url] && <span className="menuCaret">⌄</span>}
-              </button>
-              {navDropdowns[url] && (
-                <div className="navDropdownPanel">
-                  {navDropdowns[url].map((d, i) => (
-                    <button key={d.label + i} onClick={() => handle(d.url)}>
-                      {d.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
           <button
-            className={menu ? "active" : ""}
-            onClick={() => setMenu((v) => !v)}
+            className={!home && path === "/" ? "active" : ""}
+            onClick={() => handle("/")}
           >
-            COMPANY <span className="menuCaret">⌄</span>
+            HOME
           </button>
+          <button
+            className={path === "/categories" ? "active" : ""}
+            onClick={() => handle("/categories")}
+          >
+            DRONE CATEGORIES
+          </button>
+          <div className="navDropdownContainer">
+            <button
+              className={path === "/sectors" || sectorsOpen ? "active" : ""}
+              onClick={() => {
+                setMenu(false);
+                setServicesOpen(false);
+                setSectorsOpen((v) => !v);
+              }}
+              aria-expanded={sectorsOpen}
+            >
+              SECTORS <span className="menuCaret">⌄</span>
+            </button>
+          </div>
+          <div className="navDropdownContainer">
+            <button
+              className={path === "/services" || path.startsWith("/services/") || servicesOpen ? "active" : ""}
+              onClick={() => {
+                setMenu(false);
+                setSectorsOpen(false);
+                setServicesOpen((v) => !v);
+              }}
+              aria-expanded={servicesOpen}
+            >
+              SERVICES <span className="menuCaret">⌄</span>
+            </button>
+          </div>
+          <button
+            className={path === "/milu-ai" ? "active" : ""}
+            onClick={() => handle("/milu-ai")}
+          >
+            MILU AI
+          </button>
+          <div className="navItem">
+            <button
+              className={path === "/network" ? "active" : ""}
+              onClick={() => handle("/network")}
+            >
+              NETWORK
+              <span className="menuCaret">⌄</span>
+            </button>
+            <div className="navDropdownPanel">
+              {navDropdowns["/network"].map((d, i) => (
+                <button key={d.label + i} onClick={() => handle(d.url)}>
+                  {d.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <button
+            className={path === "/careers" ? "active" : ""}
+            onClick={() => handle("/careers")}
+          >
+            CAREERS
+          </button>
+          <div className="navDropdownContainer">
+            <button
+              className={menu ? "active" : ""}
+              onClick={() => {
+                setServicesOpen(false);
+                setSectorsOpen(false);
+                setMenu((v) => !v);
+              }}
+              aria-expanded={menu}
+            >
+              COMPANY <span className="menuCaret">⌄</span>
+            </button>
+          </div>
         </div>
         <div className="navRight">
           <button className="partner" onClick={() => navigate("/contact")}>
@@ -1026,6 +1119,34 @@ function Navbar() {
             </button>
           ))}
         </div>
+        <div className="mobileCompanyLinks mobileServicesGroup">
+          <div>
+            <small>CORE SERVICES</small>
+            <span>FLEET & OPERATIONS</span>
+          </div>
+          <div className="mobileServicesGrid">
+            {servicesMenuList.map((svc) => (
+              <button
+                key={svc.slug}
+                className={path === svc.url ? "active" : ""}
+                onClick={() => handle(svc.url)}
+              >
+                <div className="mobileSvcBtnContent">
+                  <span className="mobileSvcBadge">{svc.badge}</span>
+                  <span className="mobileSvcTitle">{svc.title}</span>
+                </div>
+                <b>↗</b>
+              </button>
+            ))}
+            <button
+              className="mobileAllServicesBtn"
+              onClick={() => handle("/services")}
+            >
+              <span>EXPLORE ALL SERVICES</span>
+              <b>→</b>
+            </button>
+          </div>
+        </div>
         <div className="mobileCompanyLinks">
           <div>
             <small>COMPANY</small>
@@ -1048,8 +1169,23 @@ function Navbar() {
           <button className="partner" onClick={() => handle("/contact")}>
             START A CONVERSATION <span>→</span>
           </button>
+          <a
+            href="tel:01354316767"
+            className="mobileWhatsAppBtn"
+            onClick={() => setMobileOpen(false)}
+          >
+            <span>📞</span> CALL HELPLINE: 0135 431 6767
+          </a>
         </div>
       </div>
+      <ServicesMenu
+        open={servicesOpen}
+        onClose={() => setServicesOpen(false)}
+      />
+      <SectorsMenu
+        open={sectorsOpen}
+        onClose={() => setSectorsOpen(false)}
+      />
       <CompanyMenu
         open={menu}
         onClose={() => {
@@ -1070,13 +1206,23 @@ function ContactBlock() {
   const [submitting, setSubmitting] = useState(false);
   const [submittedRef, setSubmittedRef] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmittedRef(`OJAS-INQ-${Math.floor(1000 + Math.random() * 9000)}`);
-      setSubmitting(false);
-    }, 600);
+    const refCode = `OJAS-INQ-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    await submitInquiryForm({
+      name,
+      phone,
+      email,
+      category,
+      message,
+      referenceCode: refCode,
+      formType: "contact_page",
+    });
+
+    setSubmittedRef(refCode);
+    setSubmitting(false);
   };
 
   return (
@@ -1828,12 +1974,22 @@ function FAQList({ items }: { items: ServiceFAQ[] }) {
 function ServiceDetailPage({ slug }: { slug: string }) {
   const s = services.find((x) => x.slug === slug);
   if (!s) return <ServicesPage />;
+
+  const heroImage =
+    slug === "drone-training"
+      ? teamFieldDeployment
+      : slug === "drone-repair-maintenance"
+      ? teamDroneLab
+      : slug === "drone-sales"
+      ? aboutImage
+      : technologyImage;
+
   return (
     <StandardPage
       question={`Service / ${s.eyebrow}`}
       title={<>{s.title}</>}
       description={s.tagline}
-      image={s.slug === "drone-training" ? teamFieldDeployment : technologyImage}
+      image={heroImage}
     >
       <SectionBlock
         eyebrow={s.includesHeading}
@@ -1883,6 +2039,27 @@ function ServiceDetailPage({ slug }: { slug: string }) {
       <SectionBlock eyebrow="FAQ" title={<>Common questions.</>}>
         <FAQList items={s.faq} />
       </SectionBlock>
+      <div className="serviceCrossNavSection">
+        <span className="crossNavEyebrow">EXPLORE CONNECTED SERVICES</span>
+        <div className="serviceCrossNavGrid">
+          {services
+            .filter((x) => x.slug !== slug)
+            .map((other) => (
+              <button
+                key={other.slug}
+                className="serviceCrossNavCard"
+                onClick={() => navigate(servicePath(other.slug))}
+              >
+                <div className="crossNavHead">
+                  <small>CORE SERVICE</small>
+                  <b>↗</b>
+                </div>
+                <h4>{other.eyebrow}</h4>
+                <p>{other.tagline}</p>
+              </button>
+            ))}
+        </div>
+      </div>
       <div className="serviceFinalCta">
         <h2>{s.ctaTitle}</h2>
         <p>{s.ctaSubtitle}</p>
@@ -3109,7 +3286,7 @@ function useSEO(path: string) {
       });
       return;
     }
-    const svc = services.find((x) => servicePath(x.slug) === path);
+    const svc = services.find((x) => servicePath(x.slug) === path || (x.slug === "drone-sales" && path === "/services/drone-sale"));
     if (svc) {
       applySEO(`${svc.eyebrow} | Services`, svc.tagline, path);
       setPageSchema({
@@ -3158,7 +3335,7 @@ function Router() {
   if (path === "/compliance") return <CompliancePage />;
   const s = solutions.find((x) => solutionPath(x.title) === path);
   if (s) return <SolutionPage s={s} />;
-  const svc = services.find((x) => servicePath(x.slug) === path || (x.slug === "drone-sale" && (path === "/services/drone-sales" || path === "/services/drone-sale")));
+  const svc = services.find((x) => servicePath(x.slug) === path || (x.slug === "drone-sales" && (path === "/services/drone-sales" || path === "/services/drone-sale")));
   if (svc) return <ServiceDetailPage slug={svc.slug} />;
   return <NotFoundPage />;
 }

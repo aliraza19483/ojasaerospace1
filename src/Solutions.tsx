@@ -11,6 +11,7 @@ import logistics from "./assets/photography/logistics-drone.webp";
 import about from "./assets/photography/about.webp";
 import careers from "./assets/photography/careers-drone.webp";
 import miluLogo from "./assets/LOGO.png";
+import { submitInquiryForm } from "./utils/formSubmit";
 
 type IconName = "leaf" | "globe" | "eye" | "chip" | "grid" | "route" | "signal" | "shield" | "network";
 type CustomStyles = CSSProperties & {
@@ -502,6 +503,16 @@ export default function Solutions() {
     setSubmittedRef(code);
     setSubmittedData({ name, email, interest, message });
     setMailReady(true);
+
+    submitInquiryForm({
+      name,
+      phone: "Not Provided (Email Channel)",
+      email,
+      category: interest,
+      message,
+      referenceCode: code,
+      formType: "homepage_enquiry",
+    });
   };
   return (
     <div className="homepage">

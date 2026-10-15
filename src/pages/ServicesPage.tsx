@@ -1,5 +1,6 @@
 import React from "react";
 import careersImage from "../assets/careers.webp";
+import agricultureDroneImg from "../assets/photography/agriculture-drone.webp";
 import { services } from "../constants/servicesData";
 import { navigate, servicePath } from "../utils/navigation";
 import { StandardPage } from "../components/ui/StandardPage";
@@ -7,16 +8,49 @@ import { SectionBlock } from "../components/ui/SectionBlock";
 import { Icon } from "../components/ui/Icon";
 import { triggerInquiry } from "../components/ui/InquiryModal";
 
+const SERVICE_ICONS: Record<string, React.ReactNode> = {
+  "drone-sales": (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2v20M2 12h20" strokeOpacity="0.4" />
+      <circle cx="12" cy="12" r="3" />
+      <circle cx="5" cy="5" r="2.5" />
+      <circle cx="19" cy="5" r="2.5" />
+      <circle cx="5" cy="19" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      <path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3" />
+    </svg>
+  ),
+  "drone-repair-maintenance": (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+    </svg>
+  ),
+  "drone-training": (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+    </svg>
+  ),
+  "drone-rental": (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+      <path d="M9 16l2 2 4-4" />
+    </svg>
+  ),
+};
+
 const SERVICE_MEDIA: Record<
   string,
   { image: string; alt: string; badge: string; isTransparent?: boolean }
 > = {
   "drone-sales": {
-    image:
-      "/Agri%20drone/EFT%20G630%2030%20Litre%20Agriculture%20Hexacopter%20Drone.png",
-    alt: "EFT G630 Agricultural Drone Platform - OJAS Sales Airframe",
+    image: agricultureDroneImg,
+    alt: "EFT Agricultural & Enterprise Drone Sales Platform - OJAS Aerospace",
     badge: "OEM Platform Sales",
-    isTransparent: true,
+    isTransparent: false,
   },
   "drone-repair-maintenance": {
     image:
@@ -72,11 +106,7 @@ export function ServicesPage() {
                     <img
                       src={media.image}
                       alt={media.alt}
-                      className={
-                        media.isTransparent
-                          ? "serviceImgTransparent"
-                          : "serviceImgCover"
-                      }
+                      className="serviceImgCover"
                       loading="lazy"
                       decoding="async"
                     />
@@ -85,7 +115,7 @@ export function ServicesPage() {
                 )}
                 <div className="fourServiceHead">
                   <div className="iconBubble">
-                    <Icon name={svc.icon} />
+                    {SERVICE_ICONS[svc.slug] || <Icon name={svc.icon} />}
                   </div>
                   <small>0{i + 1} / SERVICE</small>
                   <h3>{svc.hero.eyebrow}</h3>

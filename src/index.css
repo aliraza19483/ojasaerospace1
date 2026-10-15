@@ -12987,6 +12987,412 @@ html[data-motion="reduced"] .splashLine {
   bottom: calc(22px + env(safe-area-inset-bottom, 0px)) !important;
 }
 
+/* =========================================================
+   Services Mega-Menu Dropdown & Mobile Services Architecture
+   ========================================================= */
 
+.servicesMenuModal {
+  position: fixed;
+  z-index: 1000;
+  top: 78px;
+  left: 0;
+  right: 0;
+  background: rgba(6, 4, 14, 0.98);
+  border-top: 1px solid rgba(232, 184, 79, 0.28);
+  border-bottom: 1px solid rgba(166, 92, 255, 0.28);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  animation: menuSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.7);
+}
 
+.servicesMenuInner {
+  max-width: 1360px;
+  margin: auto;
+  padding: 34px 36px 28px;
+  display: grid;
+  grid-template-columns: 0.85fr 1.65fr;
+  gap: 46px;
+  align-items: start;
+}
 
+.servicesMenuHeader h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  line-height: 1.15;
+  margin: 14px 0 12px;
+  color: #fff;
+}
+
+.servicesMenuIntro {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #9f9aa9;
+  margin-bottom: 22px;
+}
+
+.servicesMenuHeaderActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.servicesMenuGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.serviceMenuItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 18px 20px 18px 18px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  color: #eee;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceMenuItem:hover {
+  background: rgba(232, 184, 79, 0.06);
+  border-color: rgba(232, 184, 79, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.serviceMenuItemTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.serviceMenuItemIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(232, 184, 79, 0.12);
+  border: 1px solid rgba(232, 184, 79, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold1);
+  transition: all 0.25s ease;
+}
+
+.serviceMenuItem:hover .serviceMenuItemIcon {
+  background: var(--gold1);
+  color: #0b0914;
+  border-color: var(--gold1);
+}
+
+.serviceMenuBadge {
+  font-family: 'Space Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(166, 92, 255, 0.15);
+  border: 1px solid rgba(166, 92, 255, 0.3);
+  color: #d8b4fe;
+  text-transform: uppercase;
+}
+
+.serviceMenuItem:hover .serviceMenuBadge {
+  background: rgba(232, 184, 79, 0.15);
+  border-color: rgba(232, 184, 79, 0.35);
+  color: var(--gold2);
+}
+
+.serviceMenuItemCopy {
+  flex: 1;
+}
+
+.serviceCategoryTag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--gold2);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.serviceMenuItemCopy h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+.serviceMenuItem:hover .serviceMenuItemCopy h4 {
+  color: var(--gold1);
+}
+
+.serviceMenuItemCopy small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.serviceMenuArrow {
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  font-size: 15px;
+  color: var(--gold1);
+  transition: transform 0.2s ease;
+}
+
+.serviceMenuItem:hover .serviceMenuArrow {
+  transform: translate(3px, -3px);
+}
+
+.servicesMenuFooter {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 12px 36px;
+}
+
+.servicesMenuFooterInner {
+  max-width: 1360px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.servicesMenuFooterItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.servicesMenuFooterItem .footerDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold1);
+  display: inline-block;
+}
+
+.servicesMenuFooterItem .footerLabel {
+  font-family: 'Space Mono', monospace;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.08em;
+}
+
+.servicesMenuHelpline {
+  color: var(--gold1);
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 11.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.servicesMenuHelpline:hover {
+  color: #fff;
+}
+
+/* Mobile drawer Services enhancements */
+.mobileServicesGroup {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.mobileServicesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.mobileServicesGrid button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: #eee;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobileServicesGrid button:hover,
+.mobileServicesGrid button.active {
+  background: rgba(232, 184, 79, 0.08);
+  border-color: rgba(232, 184, 79, 0.4);
+}
+
+.mobileSvcBtnContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mobileSvcBadge {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: var(--gold2);
+  text-transform: uppercase;
+}
+
+.mobileSvcTitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.mobileAllServicesBtn {
+  grid-column: 1 / -1;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px !important;
+  background: rgba(232, 184, 79, 0.1) !important;
+  border: 1px solid rgba(232, 184, 79, 0.35) !important;
+  border-radius: 6px;
+  color: var(--gold1) !important;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Light Theme Overrides for Services Menu */
+[data-theme="light"] .servicesMenuModal {
+  background: rgba(255, 255, 255, 0.98);
+  border-top-color: rgba(121, 52, 217, 0.25);
+  border-bottom-color: rgba(121, 52, 217, 0.25);
+  box-shadow: 0 35px 90px rgba(30, 20, 50, 0.15);
+}
+
+[data-theme="light"] .servicesMenuHeader h3 {
+  color: #1a1426;
+}
+
+[data-theme="light"] .serviceMenuItem {
+  background: #f8f6fc;
+  border-color: rgba(121, 52, 217, 0.12);
+  color: #1a1426;
+}
+
+[data-theme="light"] .serviceMenuItem:hover {
+  background: #f1ecfa;
+  border-color: #7934d9;
+}
+
+[data-theme="light"] .serviceMenuItemCopy h4 {
+  color: #1a1426;
+}
+
+[data-theme="light"] .servicesMenuFooter {
+  background: #f2eefa;
+  border-top-color: rgba(121, 52, 217, 0.15);
+}
+
+[data-theme="light"] .servicesMenuFooterItem .footerLabel {
+  color: #1a1426;
+}
+
+/* Service Detail Page Cross-Navigation */
+.serviceCrossNavSection {
+  margin: 60px 0 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.crossNavEyebrow {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--gold2);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.serviceCrossNavGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 850px) {
+  .serviceCrossNavGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.serviceCrossNavCard {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.serviceCrossNavCard:hover {
+  background: rgba(232, 184, 79, 0.05);
+  border-color: rgba(232, 184, 79, 0.35);
+  transform: translateY(-2px);
+}
+.crossNavHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: var(--gold1);
+}
+.crossNavHead small {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.serviceCrossNavCard h4 {
+  font-size: 16px;
+  margin: 0 0 8px;
+  color: #fff;
+}
+.serviceCrossNavCard p {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Queries for Services Menu */
+@media (max-width: 1024px) {
+  .servicesMenuInner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .servicesMenuGrid {
+    grid-template-columns: 1fr;
+  }
+  .servicesMenuFooterInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo-gold.png";
 import { CompanyMenu } from "./CompanyMenu";
 import { SectorsMenu } from "./SectorsMenu";
+import { ServicesMenu, servicesMenuList } from "./ServicesMenu";
 import { navigate, go } from "../../utils/navigation";
 import { useTheme } from "../../utils/theme";
 
@@ -10,6 +11,7 @@ export function Navbar() {
   const [path, setPath] = useState(location.pathname);
   const home = path === "/" || path === "/home";
   const [menu, setMenu] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [sectorsOpen, setSectorsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = React.useRef<HTMLElement>(null);
@@ -18,6 +20,7 @@ export function Navbar() {
     const f = () => {
       setPath(location.pathname);
       setMenu(false);
+      setServicesOpen(false);
       setSectorsOpen(false);
     };
     addEventListener("popstate", f);
@@ -33,6 +36,7 @@ export function Navbar() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setMenu(false);
+        setServicesOpen(false);
         setSectorsOpen(false);
         setMobileOpen(false);
       }
@@ -42,19 +46,20 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (!menu && !sectorsOpen) return;
+    if (!menu && !servicesOpen && !sectorsOpen) return;
     const onDocClick = (e: MouseEvent) => {
       const target = e.target as Node;
       const inNav = navRef.current && navRef.current.contains(target);
       const inDropdown = (target as Element).closest?.(".companyMenu");
       if (!inNav && !inDropdown) {
         setMenu(false);
+        setServicesOpen(false);
         setSectorsOpen(false);
       }
     };
     document.addEventListener("mousedown", onDocClick);
     return () => document.removeEventListener("mousedown", onDocClick);
-  }, [menu, sectorsOpen]);
+  }, [menu, servicesOpen, sectorsOpen]);
 
   const links: [string, string, string?][] = [
     ["HOME", "/"],
@@ -75,6 +80,7 @@ export function Navbar() {
 
   const handle = (url: string, section?: string) => {
     setMenu(false);
+    setServicesOpen(false);
     setSectorsOpen(false);
     setMobileOpen(false);
     if (home && section) go(section);
@@ -83,10 +89,18 @@ export function Navbar() {
 
   const toggleSectors = () => {
     setMenu(false);
+    setServicesOpen(false);
     setSectorsOpen((v) => !v);
   };
 
+  const toggleServices = () => {
+    setMenu(false);
+    setSectorsOpen(false);
+    setServicesOpen((v) => !v);
+  };
+
   const toggleCompany = () => {
+    setServicesOpen(false);
     setSectorsOpen(false);
     setMenu((v) => !v);
   };
@@ -133,7 +147,16 @@ export function Navbar() {
               SECTORS <span className="menuCaret">⌄</span>
             </button>
           </div>
-          {links.slice(3).map(([label, url, section]) => (
+          <div className="navDropdownContainer">
+            <button
+              className={path === "/services" || path.startsWith("/services/") || servicesOpen ? "active" : ""}
+              onClick={toggleServices}
+              aria-expanded={servicesOpen}
+            >
+              SERVICES <span className="menuCaret">⌄</span>
+            </button>
+          </div>
+          {links.slice(4).map(([label, url, section]) => (
             <button
               key={url}
               className={!home && path === url ? "active" : ""}
@@ -196,6 +219,34 @@ export function Navbar() {
             </button>
           ))}
         </div>
+        <div className="mobileCompanyLinks mobileServicesGroup">
+          <div>
+            <small>CORE SERVICES</small>
+            <span>FLEET & OPERATIONS</span>
+          </div>
+          <div className="mobileCompanyGrid">
+            {servicesMenuList.map((svc) => (
+              <button
+                key={svc.slug}
+                className={path === svc.url ? "active" : ""}
+                onClick={() => handle(svc.url)}
+              >
+                <div className="mobileSvcBtnContent">
+                  <span className="mobileSvcBadge">{svc.badge}</span>
+                  <span className="mobileSvcTitle">{svc.title}</span>
+                </div>
+                <b>↗</b>
+              </button>
+            ))}
+            <button
+              className="mobileAllServicesBtn"
+              onClick={() => handle("/services")}
+            >
+              <span>EXPLORE ALL SERVICES</span>
+              <b>→</b>
+            </button>
+          </div>
+        </div>
         <div className="mobileCompanyLinks">
           <div>
             <small>COMPANY</small>
@@ -227,6 +278,10 @@ export function Navbar() {
           </a>
         </div>
       </div>
+      <ServicesMenu
+        open={servicesOpen}
+        onClose={() => setServicesOpen(false)}
+      />
       <SectorsMenu
         open={sectorsOpen}
         onClose={() => setSectorsOpen(false)}

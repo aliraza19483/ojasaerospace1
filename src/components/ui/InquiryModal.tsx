@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { submitInquiryForm } from "../../utils/formSubmit";
 
 export type InquiryDetail = {
   title?: string;
@@ -74,20 +75,35 @@ export function InquiryModal() {
   const cleanDigits = phone.replace(/\D/g, "");
   const isPhoneValid = cleanDigits.length >= 10;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      const refCode = `OJAS-REQ-${Math.floor(1000 + Math.random() * 9000)}`;
-      setSubmittedRef(refCode);
-      setSubmitting(false);
-    }, 600);
+    const refCode = `OJAS-REQ-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    await submitInquiryForm({
+      name,
+      phone,
+      service,
+      state: stateName,
+      district,
+      contactMethod,
+      message,
+      referenceCode: refCode,
+      formType: "inquiry_modal",
+    });
+
+    setSubmittedRef(refCode);
+    setSubmitting(false);
   };
 
   const handleClose = () => {
     setOpen(false);
     setSubmittedRef(null);
   };
+
+  const waSummary = encodeURIComponent(
+    `Hello OJAS Aerospace, I submitted an operational inquiry on your portal [Ref: ${submittedRef}]:\nName: ${name}\nMobile: +91 ${phone}\nService: ${service}\nLocation: ${district ? `${district}, ${stateName}` : stateName}\nPreferred Contact: ${contactMethod}\nRequirement: ${message}`
+  );
 
   return (
     <div
@@ -115,19 +131,37 @@ export function InquiryModal() {
             </div>
             <div className="contactFormTerminalBadge" style={{ justifyContent: "center", marginBottom: 8 }}>
               <span className="contactFormTerminalDot" />
-              TRANSMISSION VERIFIED
+              TRANSMISSION VERIFIED &amp; DISPATCHED
             </div>
             <h3 id="inquiry-title">Enquiry Transmitted</h3>
             <span className="inquirySuccessRef">{submittedRef}</span>
             <p>
               Thank you, <strong>{name || "Customer"}</strong>. Your operational brief for{" "}
-              <strong>{service}</strong> in <strong>{district ? `${district}, ${stateName}` : stateName}</strong> has been logged directly with the regional technical command desk.
+              <strong>{service}</strong> in <strong>{district ? `${district}, ${stateName}` : stateName}</strong> has been logged directly with the regional technical command desk at <code>info@ojasspace.com</code>.
             </p>
             <p style={{ fontSize: "12.5px", color: "var(--muted)" }}>
               Our field coordinator will reach out via <strong>{contactMethod}</strong> within 24 business hours.
             </p>
 
             <div className="successActionGrid">
+              <a
+                href={`https://wa.me/911354316767?text=${waSummary}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="successActionBtn"
+                style={{
+                  background: "#25D366",
+                  color: "#081b0f",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                }}
+              >
+                <span>💬</span> DIRECT WHATSAPP CONFIRMATION ↗
+              </a>
               <a href="tel:01354316767" className="successActionBtn callBtn">
                 <span>📞</span> CALL COMMAND DESK: 0135 431 6767
               </a>

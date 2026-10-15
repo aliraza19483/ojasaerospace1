@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Eyebrow } from "../ui/Eyebrow";
+import { submitInquiryForm } from "../../utils/formSubmit";
 
 const CONTACT_CATEGORIES = [
   { id: "Agricultural Drones / Spraying", label: "Agri Spraying", icon: "🌾" },
@@ -30,14 +31,32 @@ export function ContactBlock() {
   const cleanDigits = phone.replace(/\D/g, "");
   const isPhoneValid = cleanDigits.length >= 10;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmittedRef(`OJAS-ENQ-${Math.floor(1000 + Math.random() * 9000)}`);
-      setSubmitting(false);
-    }, 600);
+    const refCode = `OJAS-ENQ-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    await submitInquiryForm({
+      name,
+      phone,
+      email,
+      category: areaOfInterest,
+      state: locationState,
+      district,
+      block,
+      contactMethod,
+      message,
+      referenceCode: refCode,
+      formType: "contact_page",
+    });
+
+    setSubmittedRef(refCode);
+    setSubmitting(false);
   };
+
+  const waSummary = encodeURIComponent(
+    `Hello OJAS Aerospace, I submitted an enquiry via your portal [Ref: ${submittedRef}]:\nName: ${name}\nMobile: +91 ${phone}\nEmail: ${email || "N/A"}\nInterest: ${areaOfInterest}\nLocation: ${district ? `${district}, ${locationState}` : locationState}\nPreferred Contact: ${contactMethod}\nMessage: ${message}`
+  );
 
   return (
     <div className="contactLayout">
@@ -110,18 +129,36 @@ export function ContactBlock() {
             </div>
             <div className="contactFormTerminalBadge" style={{ justifyContent: "center", marginBottom: 8 }}>
               <span className="contactFormTerminalDot" />
-              TRANSMISSION RECORDED
+              TRANSMISSION RECORDED &amp; DISPATCHED
             </div>
             <h3 style={{ fontSize: "24px", color: "#fff", margin: "6px 0 10px" }}>Enquiry Registered</h3>
             <span className="inquirySuccessRef">{submittedRef}</span>
             <p style={{ color: "var(--muted)", fontSize: "14px", lineHeight: "1.6", maxWidth: 440, margin: "0 auto 16px" }}>
               Thank you, <strong>{name}</strong>. Your requirement regarding <strong>{areaOfInterest}</strong> for{" "}
-              <strong>{district ? `${district}, ${locationState}` : locationState}</strong> has been received by our regional team.
+              <strong>{district ? `${district}, ${locationState}` : locationState}</strong> has been transmitted directly to <code>info@ojasspace.com</code>.
             </p>
             <p style={{ fontSize: "12.5px", color: "var(--muted)" }}>
               Our operations coordinator will connect with you via <strong>{contactMethod}</strong> within 24 business hours.
             </p>
             <div className="successActionGrid">
+              <a
+                href={`https://wa.me/911354316767?text=${waSummary}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="successActionBtn"
+                style={{
+                  background: "#25D366",
+                  color: "#081b0f",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                }}
+              >
+                <span>💬</span> DIRECT WHATSAPP CONFIRMATION ↗
+              </a>
               <a href="tel:01354316767" className="successActionBtn callBtn">
                 <span>📞</span> CALL HELPLINE: 0135 431 6767
               </a>
