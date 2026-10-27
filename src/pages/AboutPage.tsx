@@ -1,13 +1,14 @@
-import React from "react";
+﻿import React from "react";
 import aboutImage from "../assets/about.webp";
 import teamDroneLab from "../assets/team-drone-lab.webp";
 import teamFieldDeployment from "../assets/team-field-deployment.webp";
+import deveshJha from "../assets/team/devesh-jha.jpg";
 import { coreValues } from "../constants/values";
 import { StandardPage } from "../components/ui/StandardPage";
 import { SectionBlock } from "../components/ui/SectionBlock";
 import { Icon } from "../components/ui/Icon";
-
 import { MilestoneTimeline } from "../components/sections/MilestoneTimeline";
+
 
 export function AboutPage() {
   return (
@@ -105,7 +106,7 @@ export function AboutPage() {
 
       {/* Founder's Perspective & Aviation Discipline */}
       <SectionBlock
-        eyebrow="From the Flight Deck"
+        eyebrow="From the Founder's Desk"
         title={
           <>
             Airmanship & <em>aerospace safety culture.</em>
@@ -122,15 +123,66 @@ export function AboutPage() {
           <div className="founderSignoff">
             <div className="founderAvatar">
               <img
-                src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.46.14%20AM.jpeg"
-                alt="Flight Operations Leadership in Cockpit"
+                src={deveshJha}
+                alt="Devesh Jha — Founder & CEO, OJAS Aerospace"
                 loading="lazy"
                 decoding="async"
               />
             </div>
             <div>
-              <strong>Flight Operations & Aerospace Leadership</strong>
+              <strong>Devesh Jha — Founder & CEO</strong>
               <span>OJAS Aerospace Private Limited · Dehradun Central Command</span>
+            </div>
+          </div>
+        </div>
+      </SectionBlock>
+      {/* Founder Spotlight */}
+      <SectionBlock
+        eyebrow="The Visionary Behind OJAS"
+        title={
+          <>
+            Meet the <em>Founder.</em>
+          </>
+        }
+      >
+        <div className="founderSpotlight">
+          <div className="founderSpotlightImg">
+            <img
+              src={deveshJha}
+              alt="Devesh Jha, Founder & CEO of OJAS Aerospace"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="founderSpotlightBadge">FOUNDER &amp; CEO</div>
+          </div>
+          <div className="founderSpotlightContent">
+            <div className="founderSpotlightName">
+              <h2>Devesh Jha</h2>
+              <p className="founderSpotlightTitle">Founder &amp; Chief Executive Officer, OJAS Aerospace</p>
+            </div>
+            <p className="founderSpotlightBio">
+              Devesh Jha is the visionary entrepreneur who founded OJAS Aerospace with a singular mission — to make drone technology practically useful and accessible across India's diverse terrain and industries. With a background rooted in civil aviation rigor and deep aerospace engineering discipline, he has steered OJAS from a Dehradun R&amp;D lab to a multi-state operational network spanning agriculture, logistics, and defence-support sectors.
+            </p>
+            <p className="founderSpotlightBio">
+              Under his leadership, OJAS has built India's distributed Drone Port and Drone Centre network, deployed precision spraying across sugarcane and paddy belts, and incubated the MILU AI platform for autonomous mission intelligence. Devesh brings together aerospace safety culture, Atmanirbhar Bharat manufacturing philosophy, and ground-up farmer partnerships — creating a company that is as much a movement as it is a business.
+            </p>
+            <div className="founderStatRow">
+              <div className="founderStat">
+                <strong>2021</strong>
+                <span>Company Founded</span>
+              </div>
+              <div className="founderStat">
+                <strong>15+</strong>
+                <span>States Operational</span>
+              </div>
+              <div className="founderStat">
+                <strong>500+</strong>
+                <span>Pilots Trained</span>
+              </div>
+              <div className="founderStat">
+                <strong>DGCA</strong>
+                <span>RPTO Certified</span>
+              </div>
             </div>
           </div>
         </div>
@@ -210,7 +262,7 @@ export function AboutPage() {
           <div className="storyShowcaseCard">
             <div className="storyShowcaseImgWrapper">
               <img
-                src="/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.46.14%20AM.jpeg"
+                src={deveshJha}
                 alt="Flight leadership in aircraft cockpit with aviation headsets"
                 loading="lazy"
                 decoding="async"

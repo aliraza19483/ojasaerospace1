@@ -12,6 +12,7 @@ import about from "./assets/photography/about.webp";
 import careers from "./assets/photography/careers-drone.webp";
 import miluLogo from "./assets/LOGO.png";
 import { submitInquiryForm } from "./utils/formSubmit";
+import { FounderPreview } from "./components/sections/FounderPreview";
 
 type IconName = "leaf" | "globe" | "eye" | "chip" | "grid" | "route" | "signal" | "shield" | "network";
 type CustomStyles = CSSProperties & {
@@ -1031,6 +1032,8 @@ export default function Solutions() {
           ))}
         </div>
       </section>
+
+      <FounderPreview />
 
       <section className="hp-about hp-section" id="company">
         <div className="about-visual">

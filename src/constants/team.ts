@@ -1,4 +1,5 @@
 import { TeamMember } from "../types";
+import deveshJha from "../assets/team/devesh-jha.jpg";
 import harshitDixit from "../assets/team/harshit-dixit.jpg";
 import aliRaza from "../assets/team/ali-raza.jpg";
 import satyamJha from "../assets/team/satyam-jha.jpg";
@@ -16,6 +17,14 @@ import shubhamChaudhary from "../assets/team/shubham-chaudhary.jpg";
 import aviralSingh from "../assets/team/aviral-singh.jpg";
 
 export const teamSeed: TeamMember[] = [
+  {
+    name: "Devesh Jha",
+    role: "Founder & Chief Executive Officer",
+    department: "Founder's Office",
+    image: deveshJha,
+    category: "FOUNDER",
+    credential: "Aerospace Entrepreneur · Drone Policy & Operations",
+  },
   {
     name: "Harshit Dixit",
     role: "Head & Chief of Staff",

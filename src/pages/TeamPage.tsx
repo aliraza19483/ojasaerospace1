@@ -79,21 +79,51 @@ export function TeamPage() {
         </div>
 
         <div className="teamGrid">
-          {shown.map((member, i) => (
-            <article key={member.name} className="teamCard">
-              <div className="teamPortrait">
-                <img src={member.image} alt={member.name} loading="lazy" decoding="async" />
-              </div>
-
-              <small>{String(i + 1).padStart(2, "0")}</small>
-
-              <h3>{member.name}</h3>
-
-              <p className="teamRole">{member.role}</p>
-
-              <span>{member.department}</span>
-            </article>
-          ))}
+          {shown.map((member, i) =>
+            member.category === "FOUNDER" ? (
+              <article key={member.name} className="teamCard founderCard">
+                <div className="founderCardPortrait">
+                  <img src={member.image} alt={member.name} loading="lazy" decoding="async" />
+                  <div className="founderCardImgBadge">FOUNDER &amp; CEO</div>
+                </div>
+                <div className="founderCardBody">
+                  <small className="founderCardNum">{String(i + 1).padStart(2, "0")}</small>
+                  <h3>{member.name}</h3>
+                  <p className="founderCardRole">{member.role}</p>
+                  {member.credential && (
+                    <span className="founderCardCredential">{member.credential}</span>
+                  )}
+                  <p className="founderCardBio">
+                    Devesh Jha founded OJAS Aerospace with a singular mission — to make drone technology practically useful and accessible across India. With a background rooted in civil aviation rigor and aerospace engineering discipline, he has built a multi-state operational network spanning agriculture, logistics, and defence-support sectors. His vision drives OJAS's Drone Port network, MILU AI platform, and farmer-first deployment philosophy.
+                  </p>
+                  <div className="founderCardStats">
+                    <div className="founderCardStat">
+                      <strong>2021</strong><span>Founded</span>
+                    </div>
+                    <div className="founderCardStat">
+                      <strong>15+</strong><span>States</span>
+                    </div>
+                    <div className="founderCardStat">
+                      <strong>500+</strong><span>Pilots Trained</span>
+                    </div>
+                    <div className="founderCardStat">
+                      <strong>DGCA</strong><span>RPTO Certified</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ) : (
+              <article key={member.name} className="teamCard">
+                <div className="teamPortrait">
+                  <img src={member.image} alt={member.name} loading="lazy" decoding="async" />
+                </div>
+                <small>{String(i + 1).padStart(2, "0")}</small>
+                <h3>{member.name}</h3>
+                <p className="teamRole">{member.role}</p>
+                <span>{member.department}</span>
+              </article>
+            )
+          )}
         </div>
       </SectionBlock>
     </StandardPage>
