@@ -25,14 +25,14 @@ export interface DroneFleetItem {
 export const FLEET_ITEMS: DroneFleetItem[] = [
   // ── AGRICULTURAL SPRAYING FLEET ──
   {
-    id: "eft-g630",
-    name: "EFT G630 30L Hexacopter",
+    id: "raptor-agri-hex",
+    name: "Raptor Agricultural Hexacopter",
     category: "agricultural",
     categoryLabel: "Agricultural Spraying",
-    image: "/Agri%20drone/EFT%20G630%2030%20Litre%20Agriculture%20Hexacopter%20Drone.png",
+    image: "/Agri%20drone/Raptor%20Drone%20Agricultural%20Hexacopter.jpg",
     realFieldImage: "/all%20image/WhatsApp%20Image%202026-09-22%20at%2011.45.00%20AM.jpeg",
     badge: "Most Popular Crop Sprayer",
-    tagline: "High-capacity 30-litre precision sprayer for sugarcane, paddy & cotton belts.",
+    tagline: "High-performance 30-litre precision sprayer — engineered for sugarcane, paddy & cotton belts.",
     specs: {
       tankCapacity: "30 Litres",
       payload: "30 kg Agrochemicals",
@@ -43,12 +43,12 @@ export const FLEET_ITEMS: DroneFleetItem[] = [
       operatingRange: "3-5 km Telemetry",
     },
     features: [
-      "Centrifugal atomizing spray nozzles with variable micron control",
+      "6-rotor carbon-fiber hexacopter frame with high-torque brushless motors",
+      "Precision micron-droplet spray nozzles with variable flow control",
       "Obstacle avoidance radar and terrain-following ground sensors",
-      "Quick-release dual LiPo intelligent battery rail",
-      "Foldable carbon-fiber arms for rapid transport on rural bikes/pickups",
+      "Quick-release intelligent LiPo battery system for zero-downtime field ops",
     ],
-    description: "The EFT G630 represents the backbone of OJAS agricultural field operations. Built for continuous spraying cycles, its high-pressure plumbing and micron droplet dispersion cover up to 35 acres per charge cycle with zero chemical waste.",
+    description: "The Raptor is OJAS's flagship agricultural hexacopter — built for relentless field performance. Its rigid carbon-fiber frame and high-efficiency 6-rotor layout deliver a stable, powerful spray platform covering up to 35 acres per charge with zero chemical waste. Engineered for India's demanding crop belts.",
   },
   {
     id: "eft-z50p",
