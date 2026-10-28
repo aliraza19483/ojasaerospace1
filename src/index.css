@@ -34,6 +34,7 @@
 
 
 :root {
+  color-scheme: dark;
   --bg: #030207;
   --panel: #07050e;
   --panel2: #0a0711;
@@ -82,7 +83,39 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav);
-  background: var(--bg)
+  background: var(--bg);
+  scrollbar-color: #1f1b2c #030207;
+  scrollbar-width: thin;
+}
+
+/* ── Custom Sleek Black Scrollbar ── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030207;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1626;
+  border-radius: 999px;
+  border: 2px solid #030207;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2e2840;
+}
+
+::-webkit-scrollbar-corner {
+  background: #030207;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 body {
